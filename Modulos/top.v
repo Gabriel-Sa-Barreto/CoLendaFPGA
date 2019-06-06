@@ -15,9 +15,14 @@ wire	 video_enable;    //sinal de area ativa da tela para impressao
 wire [10:0]	pixel_x;    //coordenada x do pixel atual da tela 
 wire [9:0]  pixel_y;    //coordenada y do pixel atual da tela
 
-reg [9:0] sprite_x;
-reg [9:0] sprite_y;
-reg [2:0] choose_sprite;
+reg [11:0] address;      //endereco da memoria
+wire [11:0] dataout;     //saida de dados da memoria
+initial begin
+	address = 0;
+end
+//reg [9:0] sprite_x;
+//reg [9:0] sprite_y;
+//reg [2:0] choose_sprite;
 
 SVGA_sync	SVGA(.clock(clk),
 				 .reset(),
@@ -27,11 +32,11 @@ SVGA_sync	SVGA(.clock(clk),
 				 .pixel_x(pixel_x),
 				 .pixel_y(pixel_y)
 				);
-
+/*
 initial begin
 	choose_sprite = 0;
 	SPRITE_OFFSET = 0;
-   $readmemh("/home/gabriel/Documentos/ConsoleFPGA/sprites_palette.mem", palette);  // bitmap palette to load
+   $readmemh("/home/gabriel/Documentos/ConsoleFPGA/teste3_palette.mem", palette);  // bitmap palette to load
 end				
 				
 // VRAM frame buffers (read-write)
@@ -46,10 +51,10 @@ localparam SPRITE_SIZE = 32;
 localparam SPRITE_COUNT = 8;
 ////////////////////////////////////////////
 //Número de itens que ira para a matriz de memoria
-localparam VRAM_DEPTH = SPRITE_SIZE * SPRITE_SIZE * SPRITE_COUNT; 
+localparam VRAM_DEPTH = SPRITE_SIZE * SPRITE_SIZE; //* SPRITE_COUNT; 
 ////////////////////////////////////////////
 //// 2^13 e o valor correspondente a 32 x 32 x 8.
-localparam VRAM_A_WIDTH = 13;  
+localparam VRAM_A_WIDTH = 10;  
 ////////////////////////////////////////////
 //Quantidade de bits para a cor de um pixel
 localparam VRAM_D_WIDTH = 8;   
@@ -64,7 +69,7 @@ sram #(
         .ADDR_WIDTH(VRAM_A_WIDTH), 
         .DATA_WIDTH(VRAM_D_WIDTH), 
         .DEPTH(VRAM_DEPTH), 
-        .MEMFILE("/home/gabriel/Documentos/ConsoleFPGA/sprites.mem"))  // bitmap to load
+        .MEMFILE("/home/gabriel/Documentos/ConsoleFPGA/teste3.mem"))  // bitmap to load
         vram (
         .i_addr(address), 
         .i_clk(clk), 
@@ -86,20 +91,17 @@ end
 
 always @ (posedge clk)
     begin
+		  address <= SPRITE_OFFSET + (SPRITE_SIZE * sprite_y) + sprite_x;
         if (video_enable)
 				begin
 					buildSprite(400,300);
-					address <= SPRITE_OFFSET + (SPRITE_SIZE * sprite_y) + sprite_x;
 				end
-        else    
-				begin 
-					colour <= 0;
-				end
+        else  colour <= 0;
         VGA_R <= colour[11:9];
         VGA_G <= colour[7:5];
         VGA_B <= colour[3:1];
     end			 
-		 
+	 
 task buildSprite;
 	input [9:0] x;
 	input [9:0] y;
@@ -108,10 +110,9 @@ task buildSprite;
 		begin
 			if(sprite_y > SPRITE_SIZE) 
 			begin
-				sprite_x <= 0;
 				sprite_y <= 0;
+				sprite_x <= 0;
 			end
-			
 			if(sprite_x > SPRITE_SIZE-1) 
 			begin
 				sprite_x <= 0;
@@ -128,5 +129,30 @@ task buildSprite;
 		end
 	end
 endtask
-		 
+*/
+localparam QTD_ELEMENTS = 3;
+memorySprites #(.ELEMENTS(QTD_ELEMENTS))
+memorySprites_inst
+(
+	.clk(clk) ,	// input  clk_sig
+	.read_enable(1) ,	// input  read_enable_sig
+	.address_sprite(address) ,	// input [9:0] address_sprite_sig
+	.element(5) ,	// input  element_sig
+	.dataout(dataout) 	// output [11:0] dataout_sig
+);
+
+always @ (posedge clk)
+begin
+	if(video_enable)
+	begin
+		if( (pixel_x >= 300 && pixel_x <= 332 ) && (pixel_y >= 300 && pixel_y <= 332 ) )
+		begin
+			VGA_R <= dataout[11:9];
+			VGA_G <= dataout[7:5];
+			VGA_B <= dataout[3:1];
+			address <= address + 1;
+		end
+	end
+
+end	 
 endmodule
