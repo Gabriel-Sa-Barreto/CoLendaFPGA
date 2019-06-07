@@ -2,40 +2,112 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'memorySprites:memorySprites_inst|read_enable4'
+Slack : -5.193
+TNS   : -32.900
+
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -1.574
-TNS   : -25.832
+Slack : -3.065
+TNS   : -202.963
+
+Type  : Slow 1200mV 85C Model Setup 'element[0]'
+Slack : -2.874
+TNS   : -15.982
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : 0.342
+Slack : -2.668
+TNS   : -2.668
+
+Type  : Slow 1200mV 85C Model Hold 'element[0]'
+Slack : -0.927
+TNS   : -0.927
+
+Type  : Slow 1200mV 85C Model Hold 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.385
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -26.000
+TNS   : -106.392
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'element[0]'
+Slack : 0.387
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.442
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'memorySprites:memorySprites_inst|read_enable4'
+Slack : -4.724
+TNS   : -29.744
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -1.273
-TNS   : -20.596
+Slack : -2.669
+TNS   : -173.432
+
+Type  : Slow 1200mV 0C Model Setup 'element[0]'
+Slack : -2.651
+TNS   : -13.503
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : 0.297
+Slack : -2.469
+TNS   : -2.469
+
+Type  : Slow 1200mV 0C Model Hold 'element[0]'
+Slack : -0.855
+TNS   : -0.855
+
+Type  : Slow 1200mV 0C Model Hold 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.365
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -26.000
+TNS   : -106.392
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'element[0]'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'memorySprites:memorySprites_inst|read_enable4'
+Slack : -2.466
+TNS   : -15.425
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -0.448
-TNS   : -5.353
+Slack : -1.762
+TNS   : -78.917
+
+Type  : Fast 1200mV 0C Model Setup 'element[0]'
+Slack : -1.417
+TNS   : -3.157
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : 0.178
+Slack : -1.782
+TNS   : -1.782
+
+Type  : Fast 1200mV 0C Model Hold 'element[0]'
+Slack : -0.503
+TNS   : -0.503
+
+Type  : Fast 1200mV 0C Model Hold 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.235
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -27.523
+TNS   : -103.691
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'memorySprites:memorySprites_inst|read_enable4'
+Slack : 0.365
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'element[0]'
+Slack : 0.377
+TNS   : 0.000
 
 ------------------------------------------------------------
