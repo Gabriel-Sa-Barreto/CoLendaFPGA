@@ -24,5 +24,5 @@ int main (void){
 	alt_timestamp_start();
 	time3 = alt_timestamp();
 	printf("time3: %u\n", (unsigned int) (time3));
-	printf("time frequency: %u", (unsigned int) alt_timestamp_freq());
+	printf("timestamp frequency: %u", (unsigned int) alt_timestamp_freq());
 }
