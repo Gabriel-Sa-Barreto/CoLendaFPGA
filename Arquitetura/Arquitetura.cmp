@@ -1,11 +1,12 @@
 	component Arquitetura is
 		port (
-			clk_clk          : in  std_logic                     := 'X';             -- clk
-			data_a_export    : out std_logic_vector(31 downto 0);                    -- export
-			data_b_export    : out std_logic_vector(31 downto 0);                    -- export
-			printting_export : in  std_logic                     := 'X';             -- export
-			reset_reset_n    : in  std_logic                     := 'X';             -- reset_n
-			switch_export    : in  std_logic_vector(2 downto 0)  := (others => 'X')  -- export
+			clk_clk       : in  std_logic                     := 'X'; -- clk
+			data_a_export : out std_logic_vector(31 downto 0);        -- export
+			data_b_export : out std_logic_vector(31 downto 0);        -- export
+			reset_reset_n : in  std_logic                     := 'X'; -- reset_n
+			wrclk_export  : out std_logic;                            -- export
+			wrfull_export : in  std_logic                     := 'X'; -- export
+			wrreg_export  : out std_logic                             -- export
 		);
 	end component Arquitetura;
 

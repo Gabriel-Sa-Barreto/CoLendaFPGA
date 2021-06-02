@@ -4,89 +4,82 @@
 #include "sys/alt_stdio.h"
 #include "altera_avalon_pio_regs.h"
 #include "system.h"
+#include <unistd.h>
 #define MASK_X 0b00000000000100000000000000000000
 #define MASK_Y 0b00000000000000000000011000000000
-#define DATA_B_BASE 0x11050
-#define DATA_A_BASE 0x11060
-#define PRINTTING_BASE 0x11040
+#define WRFULL_BASE 0x11050
+#define WRREG_BASE 0x11060
+#define WRCLK_BASE 0x11070
+#define DATA_A_BASE 0x11090
+#define DATA_B_BASE 0x11080
+#define TIME_MAX 419200000    
+
+
+int sendInstruction(unsigned long dataA, unsigned long dataB){
+	if(IORD(WRFULL_BASE,0) == 0){                           //FIFO não está cheia
+		IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);          //Desabilita o sinal de escrita
+		IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE,dataA);  //Envia o dataA
+		IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE,dataB);  //Envia o dataB
+		IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,1);
+		IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);
+		return 1;
+	}else{
+		return 0;
+	}
+}
 
 int main(){
-	//y = 50
-	unsigned long dataB_sp_1 = 0b01100001000100000110010000000000;
-	unsigned long dataA_sp_1 = 0b00000000000001000000000001010000;
+	unsigned long dataB_r0   = 0b00100110010000100101100000000000;
+	unsigned long dataA_r0   = 0b00000000000000000000000010000000;
 
-	//y = 100
-	unsigned long dataB_sp_2 = 0b01100001000100001100100000000000;
-	unsigned long dataA_sp_2 = 0b00000000000001000000000001100000;
+	unsigned long dataB_r1   = 0b00100011001000011001000000000000;
+	unsigned long dataA_r1   = 0b00000000000000000000000000010000;
 
-	//y = 200
-	unsigned long dataB_sp_3 = 0b01100001000100011001000000000000;
-	unsigned long dataA_sp_3 = 0b00000000000001000000000001110000;
+	unsigned long dataB_r2   = 0b00100011001000001100100000000000;
+	unsigned long dataA_r2   = 0b00000000000000000000000000100000;
 
-	//y = 300
-	unsigned long dataB_sp_4 = 0b01100001000100100101100000000000;
-	unsigned long dataA_sp_4 = 0b00000000000001000000000010000000;
+	unsigned long dataB_r3   = 0b00000000000000000000000100011010;
+	unsigned long dataA_r3   = 0b00000000000000111111111111110001;
 
-	//y = 400
-	unsigned long dataB_sp_5 = 0b01100001000100110010000000000000;
-	unsigned long dataA_sp_5 = 0b00000000000001000000000010010000;
+	unsigned long dataB_r4   = 0b00100011001000110010000000000000;
+	unsigned long dataA_r4   = 0b00000000000000000000000000110000;
 
-	//unsigned long dataB_back = 0b01000000000000000000000101000111;
-	//unsigned long dataA_back = 0b00000000000001111111111111110001;
-	int counter = 0;
-	bool refreshed = false;
-
-	while(counter < 280)
-	{
-		if(IORD(PRINTTING_BASE,0) == 0)
-		{
-			if(refreshed == false)
-			{
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_1);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_1);
-
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_2);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_2);
-
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_5);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_5);
-
-				dataB_sp_1 = dataB_sp_1 + MASK_X;
-				dataB_sp_2 = dataB_sp_2 + MASK_X;
-				dataB_sp_5 = dataB_sp_5 + MASK_X;
-				counter++;
-				refreshed = true;
+	int result = 0;
+	while(1){
+		if(IORD(WRFULL_BASE,0) == 0){                           //FIFO não está cheia
+			result = sendInstruction(dataA_r0, dataB_r0);   // Envia primeira instrução
+			if(result == 1){
+				printf("[INFO] Dados de r0 Inseridos\n");
+				dataB_r0 = dataB_r0 + MASK_X;
 			}
-		}else
-		{
-			refreshed = false;
-		}
-	}
-	counter = 0;
-	while(counter < 280)
-	{
-		if(IORD(PRINTTING_BASE,0) == 0)
-		{
-			if(refreshed == false)
-			{
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_1);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_1);
-
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_2);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_2);
-
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_A_BASE, dataA_sp_5);
-				IOWR_ALTERA_AVALON_PIO_DATA(DATA_B_BASE, dataB_sp_5);
-
-				dataB_sp_1 = dataB_sp_1 - MASK_X;
-				dataB_sp_2 = dataB_sp_2 - MASK_X;
-				dataB_sp_5 = dataB_sp_5 - MASK_X;
-				counter++;
-				refreshed = true;
+			
+			result = sendInstruction(dataA_r1, dataB_r1);   // Envia segunda instrução
+			if(result == 1){
+				printf("[INFO] Dados de r1 Inseridos\n");
+				dataB_r1 = dataB_r1 + MASK_X;
 			}
-		}else
-		{
-			refreshed = false;
+			
+			result = sendInstruction(dataA_r2, dataB_r2);  // Envia terceira instrução
+			if(result == 1){
+				printf("[INFO] Dados de r2 Inseridos\n");
+				dataB_r2 = dataB_r2 + MASK_X;
+			}
+			
+			result = sendInstruction(dataA_r3, dataB_r3);  // Envia quarta instrução
+			if(result == 1){
+				printf("[INFO] Dados de r3 Inseridos\n");
+			}
+			
+			result = sendInstruction(dataA_r4, dataB_r4);  // Envia quinta instrução
+			if(result == 1){
+				printf("[INFO] Dados de r4 Inseridos\n");
+				dataB_r4 = dataB_r4 + MASK_X;
+			}
+			break;
+		}else{
+			IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);         //Desabilita o sinal de escrita
+			printf("[INFO] FILA CHEIA\n");
 		}
 	}
 }
+

@@ -1,6 +1,7 @@
 m255
 K4
 z2
+!s11f MIXED_VERSIONS
 13
 !s112 1.1
 !i10d 8192
@@ -9,46 +10,50 @@ z2
 cModel Technology
 Z0 d/home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test
 vdecodeInstruction_test
-Z1 !s110 1588018559
+!s110 1620307710
 !i10b 1
-!s100 `5M5:0jM99EAeg3gC:Z0F0
-I8NnN]A6oJ:9UO7db?g^kE3
+!s100 O7HaFfGzV9V_UWT8DST140
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Ifj?<0g9j[GE6n0kJ=WaGP3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1588018552
+w1620307706
 8/home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test/decoderInstruction_test.v
 F/home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test/decoderInstruction_test.v
-L0 1
-Z3 OV;L;10.5b;63
+!i122 22
+L0 2 49
+Z3 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z4 !s108 1588018559.000000
+!s108 1620307710.000000
 !s107 /home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test/decoderInstruction_test.v|
-!s90 -reportprogress|300|-work|work|-stats=none|/home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test/decoderInstruction_test.v|
+!s90 -reportprogress|300|-work|work|/home/gabriel/Documents/ConsoleFPGA/testes/decoderInstruction_test/decoderInstruction_test.v|
 !i113 1
-Z5 o-work work
-Z6 tCvgOpt 0
+Z4 o-work work
+Z5 tCvgOpt 0
 ndecode@instruction_test
 vdecorderInstruction
-R1
+!s110 1620306517
 !i10b 1
-!s100 9e;0NUSih313RJL>CegJX2
-IVY>>>C1K@g^XBEF2fS=LG3
+!s100 JC=`L@_IaFiZb6Z?HBfck3
+R1
+IWXNkY_:KKVG`>;D8KEOzO2
 R2
 R0
-w1588018455
+w1620251128
 8/home/gabriel/Documents/ConsoleFPGA/modulos/decoderInstruction/decoderInstruction.v
 F/home/gabriel/Documents/ConsoleFPGA/modulos/decoderInstruction/decoderInstruction.v
-L0 19
+!i122 19
+L0 19 73
 R3
 r1
 !s85 0
 31
-R4
+!s108 1620306517.000000
 !s107 /home/gabriel/Documents/ConsoleFPGA/modulos/decoderInstruction/decoderInstruction.v|
-!s90 -reportprogress|300|-work|work|-stats=none|/home/gabriel/Documents/ConsoleFPGA/modulos/decoderInstruction/decoderInstruction.v|
+!s90 -reportprogress|300|-work|work|/home/gabriel/Documents/ConsoleFPGA/modulos/decoderInstruction/decoderInstruction.v|
 !i113 1
+R4
 R5
-R6
 ndecorder@instruction

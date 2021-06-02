@@ -57,7 +57,7 @@ always @(pixel_x or pixel_y or sprite_datas or sprite_on) begin
 	coluna = screen_x - aux_x_sprite;
 	aux_add_address = size_line * linha; 
 
-	if( ( (screen_x >= aux_x_sprite) && (screen_x < limite) ) ) begin
+	if( (screen_x >= aux_x_sprite) && (screen_x < limite) ) begin
 		aux_memory_address = (sprite_offset * offset) + coluna + aux_add_address; 
 	end
 	else begin

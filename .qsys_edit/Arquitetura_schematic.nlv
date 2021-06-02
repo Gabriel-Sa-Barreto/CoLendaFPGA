@@ -1,27 +1,29 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst Arquitetura.data_A -pg 1 -lvl 3 -y 30
+preplace inst Arquitetura.wrclk -pg 1 -lvl 5 -y 30
+preplace inst Arquitetura.data_A -pg 1 -lvl 6 -y 60
 preplace inst Arquitetura.nios2_gen2_0.clock_bridge -pg 1
-preplace inst Arquitetura.data_B -pg 1 -lvl 3 -y 130
+preplace inst Arquitetura.data_B -pg 1 -lvl 6 -y 160
 preplace inst Arquitetura.nios2_gen2_0.cpu -pg 1
-preplace inst Arquitetura.printting -pg 1 -lvl 3 -y 230
-preplace inst Arquitetura.switch -pg 1 -lvl 3 -y 680
+preplace inst Arquitetura.wrfull -pg 1 -lvl 5 -y 290
 preplace inst Arquitetura.nios2_gen2_0.reset_bridge -pg 1
-preplace inst Arquitetura.jtag_uart_0 -pg 1 -lvl 3 -y 490
+preplace inst Arquitetura.jtag_uart_0 -pg 1 -lvl 6 -y 620
+preplace inst Arquitetura.wrreg -pg 1 -lvl 5 -y 450
 preplace inst Arquitetura -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst Arquitetura.nios2_gen2_0 -pg 1 -lvl 2 -y 170
-preplace inst Arquitetura.sysid_qsys_0 -pg 1 -lvl 3 -y 410
-preplace inst Arquitetura.onchip_memory2_0 -pg 1 -lvl 3 -y 330
-preplace inst Arquitetura.clk_0 -pg 1 -lvl 1 -y 280
-preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)Arquitetura.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.printting,(SLAVE)printting.external_connection) 1 0 3 NJ 130 NJ 130 NJ
-preplace netloc INTERCONNECT<net_container>Arquitetura</net_container>(MASTER)nios2_gen2_0.data_master,(SLAVE)onchip_memory2_0.s1,(SLAVE)data_A.s1,(SLAVE)data_B.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)printting.s1,(SLAVE)sysid_qsys_0.control_slave,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)switch.s1) 1 1 2 320 750 800
-preplace netloc INTERCONNECT<net_container>Arquitetura</net_container>(MASTER)clk_0.clk_reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)switch.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)onchip_memory2_0.reset1,(SLAVE)printting.reset,(SLAVE)data_A.reset,(SLAVE)data_B.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)jtag_uart_0.reset) 1 1 2 280 730 780
-preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.data_b,(SLAVE)data_B.external_connection) 1 0 3 NJ 70 NJ 70 NJ
-preplace netloc POINT_TO_POINT<net_container>Arquitetura</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)jtag_uart_0.irq) 1 2 1 740
-preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.data_a,(SLAVE)data_A.external_connection) 1 0 3 NJ 50 NJ 50 NJ
-preplace netloc FAN_OUT<net_container>Arquitetura</net_container>(SLAVE)data_A.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)printting.clk,(MASTER)clk_0.clk,(SLAVE)data_B.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)sysid_qsys_0.clk,(SLAVE)switch.clk) 1 1 2 300 310 820
-preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.switch,(SLAVE)switch.external_connection) 1 0 3 NJ 710 NJ 710 NJ
+preplace inst Arquitetura.nios2_gen2_0 -pg 1 -lvl 4 -y 200
+preplace inst Arquitetura.sysid_qsys_0 -pg 1 -lvl 6 -y 540
+preplace inst Arquitetura.onchip_memory2_0 -pg 1 -lvl 6 -y 460
+preplace inst Arquitetura.clk_0 -pg 1 -lvl 1 -y 310
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)wrclk.external_connection,(SLAVE)Arquitetura.wrclk) 1 0 5 NJ 40 NJ 40 NJ 40 NJ 40 NJ
+preplace netloc INTERCONNECT<net_container>Arquitetura</net_container>(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)wrreg.s1,(SLAVE)data_A.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)sysid_qsys_0.control_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)wrclk.s1,(SLAVE)data_B.s1,(SLAVE)wrfull.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)onchip_memory2_0.s1) 1 3 3 1010 140 1660 230 1920
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)wrreg.external_connection,(SLAVE)Arquitetura.wrreg) 1 0 5 NJ 480 NJ 480 NJ 480 NJ 480 NJ
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.data_b,(SLAVE)data_B.external_connection) 1 0 6 NJ 80 NJ 80 NJ 80 NJ 80 NJ 190 NJ
+preplace netloc POINT_TO_POINT<net_container>Arquitetura</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)jtag_uart_0.irq) 1 4 2 NJ 280 1860
+preplace netloc INTERCONNECT<net_container>Arquitetura</net_container>(MASTER)clk_0.clk_reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)wrreg.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)data_B.reset,(SLAVE)wrclk.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)data_A.reset,(SLAVE)wrfull.reset) 1 1 5 N 340 NJ 340 990 160 1580 210 1900
+preplace netloc FAN_OUT<net_container>Arquitetura</net_container>(SLAVE)wrfull.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)data_A.clk,(SLAVE)data_B.clk,(SLAVE)wrreg.clk,(MASTER)clk_0.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)wrclk.clk) 1 1 5 N 320 NJ 320 970 100 1640 170 1880
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)wrfull.external_connection,(SLAVE)Arquitetura.wrfull) 1 0 5 NJ 120 NJ 120 NJ 120 NJ 120 NJ
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)data_A.external_connection,(SLAVE)Arquitetura.data_a) 1 0 6 NJ 60 NJ 60 NJ 60 NJ 60 NJ 140 NJ
 preplace netloc EXPORT<net_container>Arquitetura</net_container>(SLAVE)Arquitetura.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-levelinfo -pg 1 0 70 1130
-levelinfo -hier Arquitetura 80 110 500 970 1120
+levelinfo -pg 1 0 50 2150
+levelinfo -hier Arquitetura 60 90 480 950 1300 1710 1990 2140

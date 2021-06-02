@@ -3,13 +3,15 @@ module video_processor(
 	input wire reset,
 	input wire [31:0] dataA,
 	input wire [31:0] dataB,
- 
+ 	input wire        rdempty,
 	output wire [2:0] R,
 	output wire [2:0] G,
 	output wire [2:0] B,
 	output wire        out_hsync,
 	output wire        out_vsync,
-	output wire        out_printting
+	output wire        out_rdreg,
+	output wire [31:0] out_processor,
+	output wire        out_clk100
 );
 
 
@@ -37,6 +39,7 @@ wire 		clk_100;
 wire 		clk_25;
 wire        reset_done;
 wire 		printting;
+wire [29:0] flags;
 /*------------------------------------------------------------------------*/
 
 /*-----Sinais da unidade de controle para o gerenciamento dos módulos-----*/
@@ -47,6 +50,7 @@ wire 	   selectorDemuxRegister;
 wire 	   selectorDemuxData;
 wire 	   selectorAddress;
 wire 	   instruction_finished;
+wire       rdreg;
 /*------------------------------------------------------------------------*/
 reg 	   clk_en;
 reg        isAvailable;
@@ -77,8 +81,8 @@ decorderInstruction
 decorderInstruction_inst
 (
 	.clk_en(clk_en) ,						// input  clk_en_sig
-	.dataA(dataA) ,				    		// input [31:0] dataA_sig
-	.dataB(dataB) ,							// input [31:0] dataB_sig
+	.dataA(dataA) ,				    	// input [31:0] dataA_sig
+	.dataB(dataB) ,						// input [31:0] dataB_sig
 	.new_instruction(new_instruction) ,		// input  new_instruction_sig
 	.out_opcode(out_opcode) ,				// output [1:0]  out_opcode_sig
 	.out_register(out_register) ,			// output [13:0] out_register_sig
@@ -89,18 +93,19 @@ controlUnit
 controlUnit_inst
 (
 	.clk(clk_100) ,							// input  clk_sig
-	.reset(!reset) ,							// input  reset_sig
+	.reset(!reset) ,						// input  reset_sig
 	.opCode(out_opcode) ,					// input [3:0] opCode_sig
-	.printtingScreen(printting) ,		// input  printtingScreen_sig
-	.doneInst(instruction_finished) ,			// input  doneInst_sig
+	.printtingScreen(printting) ,		    // input  printtingScreen_sig
+	.doneInst(instruction_finished) ,	    // input  doneInst_sig
+	.fifo_empty(rdempty),                       
 	.new_instruction(new_instruction) ,		// output  new_instruction_sig
 	.memory_wr(memory_wr) ,					// output  memory_wr_sig
-	.selectField() ,						// output [3:0] selectField_sig
 	.register_wr(register_wr) ,						// output  register_wr_sig
 	.selectorDemuxRegister(selectorDemuxRegister) ,	// output  selectorDemuxRegister_sig
 	.selectorDemuxData(selectorDemuxData) ,			// output  selectorDemuxData_sig
 	.selectorAddress(selectorAddress), 				// output  selectorAddress_sig
-	.reset_done(reset_done)
+	.reset_done(reset_done),
+	.rdreg(rdreg)
 );
 
 
@@ -128,13 +133,15 @@ demultiplexador_inst_data
 
 full_register_file full_register_file_inst
 (
-	.clk(clk_100) ,				// input  clk_sig
-	.reset(!reset) ,				// input  reset_sig
-	.n_reg(n_reg) ,				// input  [4:0] n_reg_sig
-	.check(check_value) ,		// input [19:0] check_sig
-	.written(register_wr) ,		// input  written_sig
-	.data(register_data) ,		// input [31:0] data_sig
-	.readData(data_reg) ,		// output [31:0] readData_sig
+	.clk(clk_100),				// input  clk_sig
+	.reset(!reset),				// input  reset_sig
+	.n_reg(n_reg),				// input  [4:0] n_reg_sig
+	.check(check_value),		// input [19:0] check_sig
+	.written(register_wr),		// input  written_sig
+	.data(register_data),		// input [31:0] data_sig
+	.collision_en(printting),
+	.readData(data_reg),		// output [31:0] readData_sig
+	.out_flags(flags),          // output [29:0] out_flags
 	.success(done_register) 	// output  success_sig
 );
 
@@ -145,7 +152,7 @@ full_print_module_inst
 (
 	.clk(clk_100) ,								// input  clk_sig
 	.clk_pixel(clk_25) ,						// input  clk_pixel_sig
-	.reset(!reset) ,								// input  reset_sig
+	.reset(!reset) ,							// input  reset_sig
 	.data_reg(data_reg) ,						// input [31:0] data_reg_sig
 	.active_area(active_area) ,					// input  active_area_sig
 	.pixel_x(pixel_x) ,							// input [size_x1-1:0] pixel_x_sig
@@ -205,8 +212,10 @@ multiplexador_inst_color
 	.data2(memory_data_out),    // input [data_bits2-1:0] data2_sig (dados lidos da memória
 	.out(monitor_color_out) 	// output [out_bits_size-1:0] out_sig
 );
-
-assign out_printting        = printting;
+assign out_clk100           = clk_100;
+assign out_rdreg            = rdreg;
+assign out_processor[29:0]  = flags;
+assign out_processor[31:30] = 2'b00;
 assign instruction_finished = reg_done;
 assign R = monitor_color_out[2:0];
 assign G = monitor_color_out[5:3];

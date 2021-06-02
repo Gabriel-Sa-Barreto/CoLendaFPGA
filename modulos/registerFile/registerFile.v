@@ -9,7 +9,6 @@ ENTRADAS:
        check: valor para comparaçao entre valores armazenados.
         data: dado a ser escrito no registrador desejado. 
      written: sinal de escrita/leitura.
-  selectFied: seleciona qual intervalo de bits na entrada "data" sera capturado.
 SAIDAS:		 
   readData:   valor lido de um registrador.
       done:   informa se uma operacao de atualizaçao foi realizada com sucesso.
@@ -55,7 +54,7 @@ module registerFile(
 	output wire [31:0] r29,
 	output wire [31:0] r30,
 	output wire [31:0] r31,
-    output  wire       out_success
+    output wire        out_success
 );
 
 /*---Parametros que definem as posições de inicio e fim dos atributos de cada sprite em cada registrador---*/

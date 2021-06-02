@@ -12,7 +12,6 @@ ENTRADAS:
 SAIDAS:		 
 	new_instruction:   informa se uma nova instruçao pode ser executada. (0)Sim (1)Nao
 	memory_wr:         sinal de escrita/leitura da memoria de sprites.
-	selectField:       sinal que informa qual intervalo de bits da parte de dados da instruçao
 deve ser guardada pelo banco de registradores.
 	register_wr:       sinal de escrita/leitura do banco de registradores.
 	
@@ -29,23 +28,26 @@ module controlUnit(
 	 input wire [3:0] opCode,
 	 input wire       printtingScreen,
 	 input wire       doneInst,
+	 input wire       fifo_empty,
 	 output reg       new_instruction,
 	 output reg       memory_wr,
-	 output reg [3:0] selectField,
 	 output reg       register_wr,
 	 output reg       selectorDemuxRegister, 
 	 output reg       selectorDemuxData,
 	 output reg       selectorAddress,
-	 output reg       reset_done
+	 output reg       reset_done,
+	 output reg       rdreg                             //sinal de escrita da FIFO de instrucoes
 );
 
 
-parameter [1:0]     PRONTO              = 2'b00,
-					ESCREVER_NO_BANCO   = 2'b01,
-					HABILITAR_IMPRESSAO = 2'b10,
-					ESCRITA_NA_MEMORIA  = 2'b11;
+parameter [2:0]     WAIT                = 3'b000, 
+					READ_INSTRUCTION    = 3'b001,
+					PRONTO              = 3'b010,
+					ESCREVER_NO_BANCO   = 3'b011,
+					HABILITAR_IMPRESSAO = 3'b100,
+					ESCRITA_NA_MEMORIA  = 3'b101;
 
-reg [1:0] state, next;
+reg [2:0] state, next;
 
 always @(posedge clk or negedge reset) begin
 	if(!reset)
@@ -58,9 +60,25 @@ end
 Bloco always (combinacional) responsavel por analisar as entradas
 da maquina de estados e realizar a mudança para o proximo estado.
 */
-always @(state or opCode or printtingScreen or doneInst) begin
-	next = 2'bxx;
+always @(state or opCode or printtingScreen or doneInst or fifo_empty) begin
+	next = 3'bxxx;
 	case(state)
+		WAIT: begin
+			if(printtingScreen) begin
+				next = HABILITAR_IMPRESSAO;
+			end
+			else if(!fifo_empty) begin
+				next = READ_INSTRUCTION;
+			end
+			else begin
+				next = WAIT;
+			end
+		end
+
+		READ_INSTRUCTION: begin
+			next = PRONTO;
+		end
+
 		PRONTO: begin
 			if( (opCode == 4'b0000) && !printtingScreen)	
 				next = ESCREVER_NO_BANCO;
@@ -69,7 +87,7 @@ always @(state or opCode or printtingScreen or doneInst) begin
 			else if( (opCode == 4'b0000 || opCode == 4'b0001) && printtingScreen )
 				next = HABILITAR_IMPRESSAO;
 			else if(!printtingScreen) 
-				next = PRONTO;
+				next = WAIT;
 			else next = HABILITAR_IMPRESSAO;
 		end
 		
@@ -77,14 +95,14 @@ always @(state or opCode or printtingScreen or doneInst) begin
 			if(doneInst == 1'b1 && printtingScreen) 
 				next = HABILITAR_IMPRESSAO;
 			else if(doneInst == 1'b1) //a instrução que estava em execução foi finalizada
-				next = PRONTO; 
+				next = WAIT; 
 			else 
 				next = ESCREVER_NO_BANCO;
 		end
 		
 		HABILITAR_IMPRESSAO: begin
 			if(!printtingScreen) //o módulo de impressão não está mais imprimindo.
-				next = PRONTO;
+				next = WAIT;
 			else 
 				next = HABILITAR_IMPRESSAO;	
 		end
@@ -93,11 +111,11 @@ always @(state or opCode or printtingScreen or doneInst) begin
 			if(doneInst == 1'b1 && printtingScreen) 
 				next = HABILITAR_IMPRESSAO;
 			else if(doneInst == 1'b1) //a instrução que estava em execução foi finalizada
-				next = PRONTO; 
+				next = WAIT; 
 			else 
 				next = ESCRITA_NA_MEMORIA;
 		end
-		default: next = PRONTO;
+		default: next = WAIT;
 	endcase
 end
 
@@ -109,8 +127,7 @@ always @(negedge clk or negedge reset) begin
 	if(!reset) begin
 		//Todas as saidas estao desativadas
 		new_instruction   <= 1'bx;   
-		memory_wr         <= 1'bx;    
-		selectField       <= 4'bxxxx; 
+		memory_wr         <= 1'bx;
 		register_wr       <= 1'bx;    
 		selectorDemuxRegister <= 1'bx;  
 	    selectorDemuxData     <= 1'bx; 
@@ -119,10 +136,30 @@ always @(negedge clk or negedge reset) begin
 	end
 	else begin
 		case(next)
+			WAIT:  begin
+				rdreg             <= 1'b0;    //desabilita a leitura de dados da FIFO de instrucoes
+				new_instruction   <= 1'b1;    //nao permite executar novas instruçoes
+				memory_wr         <= 1'bx;    //nao tem leitura na memoria
+				register_wr       <= 1'b0;    
+				selectorDemuxRegister <= 1'bx; 
+	       		selectorDemuxData     <= 1'bx;
+	 			selectorAddress       <= 1'bx;
+	 			reset_done            <= 1'b1;
+			end
+			READ_INSTRUCTION: begin
+				rdreg             <= 1'b1;    //habilita a leitura de dados da FIFO de instrucoes
+				new_instruction   <= 1'b1;    //nao permite executar novas instruçoes
+				memory_wr         <= 1'bx;    //nao tem leitura na memoria
+				register_wr       <= 1'b0;    
+				selectorDemuxRegister <= 1'bx; 
+	       		selectorDemuxData     <= 1'bx;
+	 			selectorAddress       <= 1'bx;
+	 			reset_done            <= 1'b1;
+			end
 			PRONTO: begin
+				rdreg             <= 1'b0;    //desabilita a leitura de dados da FIFO de instrucoes
 				new_instruction   <= 1'b0;    //permite executar novas instruçoes
 				memory_wr         <= 1'bx;    //nao tem leitura na memoria
-				selectField       <= 4'bxxxx; //nao existem campos a serem alterados no registradores do banco
 				register_wr       <= 1'b0;    
 				selectorDemuxRegister <= 1'bx; 
 	       		selectorDemuxData     <= 1'bx;
@@ -133,7 +170,6 @@ always @(negedge clk or negedge reset) begin
 			ESCREVER_NO_BANCO: begin
 				new_instruction   <= 1'b1;   //nao permite executar novas instruçoes
 				memory_wr         <= 1'bx;   //nao tem leitura na memoria
-				selectField       <= opCode; //existem campos a serem alterados no registradores do banco
 				register_wr       <= 1'b1;   //aciona escrita no banco de registradores
 				selectorDemuxRegister <= 1'b1; //redireciona a entrada para o banco de registradores.
 	       		selectorDemuxData     <= 1'b1; //redireciona os dados para o banco de registradores.
@@ -145,7 +181,6 @@ always @(negedge clk or negedge reset) begin
 			HABILITAR_IMPRESSAO: begin
 				new_instruction   <= 1'b1;     //nao permite executar novas instruçoes
 				memory_wr         <= 1'b0;     //aciona leitura da memoria
-				selectField       <= 4'bxxxx;  //nao existem campos a serem alterados no registradores do banco
 				register_wr       <= 1'b0;     //aciona leitura no banco de registradores
 								
 				selectorDemuxRegister <= 1'bx; //não possue nem acesso de escrita no banco de registradores, nem na memória. 
@@ -157,7 +192,6 @@ always @(negedge clk or negedge reset) begin
 			ESCRITA_NA_MEMORIA: begin
 				new_instruction   <= 1'b1;     //nao permite executar novas instruçoes
 				memory_wr         <= 1'b1;     //aciona escrita da memoria
-				selectField       <= 4'bxxxx;  //nao existem campos a serem alterados no registradores do banco
 				register_wr       <= 1'bx;     
 									
 				selectorDemuxRegister <= 1'b0;  //redireciona o endereo recebido para a memória de sprite.
@@ -169,9 +203,9 @@ always @(negedge clk or negedge reset) begin
 			default: begin
 				/////////////////////////////////////
 				//Todas as saidas estao desativadas
+				rdreg             <= 1'b0;
 				new_instruction   <= 1'bx;   
-				memory_wr         <= 1'bx;    
-				selectField       <= 4'bxxxx; 
+				memory_wr         <= 1'bx; 
 				register_wr       <= 1'bx;    
 				selectorDemuxRegister <= 1'bx;  
 	       		selectorDemuxData     <= 1'bx; 

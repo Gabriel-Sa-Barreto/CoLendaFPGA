@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="b1f29d2cf2cf5b21dbd9"/>
+    <hash md5_digest_80b="aff6011806d1ca067a4e"/>
   </project>
   <file_info>
     <file device="EP4CE22F17C6" path="ConsoleFPGA.sof" usercode="0xFFFFFFFF"/>
@@ -139,7 +139,7 @@
   <sld_infos>
     <sld_info hpath="Arquitetura:inst_Nios" name="inst_Nios">
       <assignment_values>
-        <assignment_value text="QSYS_NAME Arquitetura HAS_SOPCINFO 1 GENERATION_ID 1605801197"/>
+        <assignment_value text="QSYS_NAME Arquitetura HAS_SOPCINFO 1 GENERATION_ID 1622659809"/>
       </assignment_values>
       <parameters/>
     </sld_info>

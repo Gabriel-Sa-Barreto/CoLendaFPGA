@@ -3,7 +3,7 @@ module frequencyDivisor;
 reg clk,reset;
 wire clk_out;
  
-frequency_divisor #(.WIDTH(3), .N(2))
+frequency_divisor #(.WIDTH(3), .N(3))
 FD1(
 .clk(clk),
 .reset(reset),
@@ -12,15 +12,15 @@ FD1(
 
 initial clk= 1'b0;
 
-always #20  clk=~clk; 
+always #5  clk=~clk; 
         
 initial
     begin
-        reset=1'b1;
-        #20
-        reset=1'b0;
+        //reset=1'b1;
+        //#5
+        //reset=1'b0;
         #500 
-        $finish;
+        $stop;
     end
  
 initial $monitor("clk=%b,reset=%b,clk_out=%b",clk,reset,clk_out);

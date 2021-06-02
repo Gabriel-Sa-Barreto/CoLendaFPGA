@@ -1,13 +1,15 @@
 module full_register_file (
-	input wire 		  clk,
-	input wire 		  reset,
-	input wire [4:0]  n_reg,
-	input wire [19:0] check,
-	input wire 		  written,
-	input wire [31:0] data,
+	input wire 		   clk,
+	input wire 		   reset,
+	input wire  [4:0]  n_reg,
+	input wire  [19:0] check,
+	input wire 		   written,
+	input wire  [31:0] data,
+	input wire 		   collision_en,
 
 	output wire [31:0] readData,
-	output wire success
+	output wire [29:0] out_flags,
+	output wire        success
 );
 
 /*-----------Saídas do banco de registradores------------*/
@@ -132,6 +134,50 @@ mod_comparator_inst
 	.check(check) ,	// input [size_check-1:0] check
 	.compare(written), 			//input compare
 	.register_read(readData) 	// output [size_reg-1:0] register_read
+);
+
+
+collision collision_inst(
+	.clk(clk),
+	.reset(reset),
+	.mod_enable(collision_en),
+	 //---------Mobile sprite registers--------
+	 .s_r0(r0),    
+	 .s_r1(r1),    
+	 .s_r2(r2),    
+	 .s_r3(r3),    
+	 .s_r4(r4),     
+	 .s_r5(r5),
+	 .s_r6(r6),
+	 .s_r7(r7),
+	 .s_r8(r8),
+	 .s_r9(r9),     
+	.s_r10(r10),     
+	.s_r11(r11),
+	.s_r12(r12),
+	.s_r13(r13),     
+	.s_r14(r14),
+	 //-----------------------------------------
+	 //---------Fixed sprite registers----------
+	.s_r15(r15),
+	.s_r16(r16),     
+	.s_r17(r17),      
+	.s_r18(r18),     
+	.s_r19(r19),
+	.s_r20(r20),
+	.s_r21(r21),
+	.s_r22(r22),
+	.s_r23(r23),
+	.s_r24(r24),
+	.s_r25(r25),
+	.s_r26(r26),
+	.s_r27(r27),
+	.s_r28(r28),
+	.s_r29(r29),
+	.s_r30(r30),
+	.s_r31(r31),       
+	//----------Collision Flags---------------
+	.flags(out_flags)
 );
 
 endmodule

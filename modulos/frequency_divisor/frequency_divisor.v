@@ -8,34 +8,27 @@
 *  out_clk: pulso de clock dividido de acordo ao parametro configurado. 
 *Parametros:
 	N: define metade do valor do divisor. Porque a contagem e feita a cada 
-*borda de subida do pulso de clock.
+*borda de subida do pulso de clock. Se deseja-se dividir o clock por 4, logo N precisa ser 2.
 *	WITDH: define a quantidade de registros necessarios para realizar a divisao.
 */
-module frequency_divisor #(parameter WITDH = 0, parameter N = 0) (
+module frequency_divisor #(parameter WIDTH = 3, parameter N = 2) (
 	input  wire clk,
-	input  wire reset,
 	output wire out_clk 
 );
 
-reg new_clock;
-reg [WITDH-1:0] counter;
-wire [WITDH-1:0] counter_next;
+reg new_clock = 0;
+reg [WIDTH-1:0]  counter = 0;
+wire [WIDTH-1:0] counter_next;
 
-localparam [WITDH-1:0] add = 1;
-
-always @ (posedge clk or negedge reset) begin
-	if(!reset) begin
-		  counter <= 0;
-		new_clock <= 0;
-	end
-	else if(counter_next == N) begin
-		  counter <= 0;
+always @ (posedge clk) begin
+	if(counter_next == N) begin
+		counter <= 0;
 		new_clock <= ~new_clock;
 	end
 	else counter <= counter_next;
 end
 
-assign counter_next = counter + add;
+assign counter_next = counter + 1;
 assign out_clk = new_clock;
 
 endmodule
