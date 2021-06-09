@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 2, 2021 3:58:45 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1622660326004</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 9, 2021 9:20:42 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1623241242480</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/gabriel/Documents/ConsoleFPGA/software/CollendaProgram_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../Arquitetura.sopcinfo</SopcDesignFile>
@@ -905,44 +905,50 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>wrfull</slaveDescriptor>
-                <addressRange>0x00011050 - 0x0001105F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>wrreg</slaveDescriptor>
+                <slaveDescriptor>screen</slaveDescriptor>
                 <addressRange>0x00011060 - 0x0001106F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>wrclk</slaveDescriptor>
+                <slaveDescriptor>wrfull</slaveDescriptor>
                 <addressRange>0x00011070 - 0x0001107F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>data_B</slaveDescriptor>
+                <slaveDescriptor>wrreg</slaveDescriptor>
                 <addressRange>0x00011080 - 0x0001108F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>data_A</slaveDescriptor>
+                <slaveDescriptor>reset_pulseCounter</slaveDescriptor>
                 <addressRange>0x00011090 - 0x0001109F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>data_B</slaveDescriptor>
+                <addressRange>0x000110A0 - 0x000110AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>data_A</slaveDescriptor>
+                <addressRange>0x000110B0 - 0x000110BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x000110B0 - 0x000110B7</addressRange>
+                <addressRange>0x000110D0 - 0x000110D7</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x000110B8 - 0x000110BF</addressRange>
+                <addressRange>0x000110D8 - 0x000110DF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

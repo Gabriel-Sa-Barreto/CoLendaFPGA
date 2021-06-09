@@ -72,6 +72,7 @@ set_location_assignment PIN_A15 -to rdempty_A
 set_location_assignment PIN_A13 -to rdempty_B
 set_location_assignment PIN_B1 -to wrfull_A
 set_location_assignment PIN_L3 -to wrfull_B
+set_global_assignment -name VERILOG_FILE modulos/pulseCounter/pulseCounter.v
 set_global_assignment -name VERILOG_FILE modulos/frequency_divisor/frequency_divisor.v
 set_global_assignment -name VERILOG_FILE modulos/collision/refresh_flags.v
 set_global_assignment -name VERILOG_FILE modulos/collision/mux_32x1.v

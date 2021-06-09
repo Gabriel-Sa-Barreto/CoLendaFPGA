@@ -11,7 +11,8 @@ module video_processor(
 	output wire        out_vsync,
 	output wire        out_rdreg,
 	output wire [31:0] out_processor,
-	output wire        out_clk100
+	output wire        out_clk100,
+	output wire        out_clk25
 );
 
 
@@ -213,6 +214,7 @@ multiplexador_inst_color
 	.out(monitor_color_out) 	// output [out_bits_size-1:0] out_sig
 );
 assign out_clk100           = clk_100;
+assign out_clk25            = clk_25;
 assign out_rdreg            = rdreg;
 assign out_processor[29:0]  = flags;
 assign out_processor[31:30] = 2'b00;

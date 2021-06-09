@@ -4,13 +4,14 @@
 
 `timescale 1 ps / 1 ps
 module Arquitetura (
-		input  wire        clk_clk,       //    clk.clk
-		output wire [31:0] data_a_export, // data_a.export
-		output wire [31:0] data_b_export, // data_b.export
-		input  wire        reset_reset_n, //  reset.reset_n
-		output wire        wrclk_export,  //  wrclk.export
-		input  wire        wrfull_export, // wrfull.export
-		output wire        wrreg_export   //  wrreg.export
+		input  wire        clk_clk,                   //                clk.clk
+		output wire [31:0] data_a_export,             //             data_a.export
+		output wire [31:0] data_b_export,             //             data_b.export
+		input  wire        reset_reset_n,             //              reset.reset_n
+		output wire        reset_pulsecounter_export, // reset_pulsecounter.export
+		input  wire        screen_export,             //             screen.export
+		input  wire        wrfull_export,             //             wrfull.export
+		output wire        wrreg_export               //              wrreg.export
 	);
 
 	wire  [31:0] nios2_gen2_0_data_master_readdata;                           // mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
@@ -59,11 +60,11 @@ module Arquitetura (
 	wire   [1:0] mm_interconnect_0_data_b_s1_address;                         // mm_interconnect_0:data_B_s1_address -> data_B:address
 	wire         mm_interconnect_0_data_b_s1_write;                           // mm_interconnect_0:data_B_s1_write -> data_B:write_n
 	wire  [31:0] mm_interconnect_0_data_b_s1_writedata;                       // mm_interconnect_0:data_B_s1_writedata -> data_B:writedata
-	wire         mm_interconnect_0_wrclk_s1_chipselect;                       // mm_interconnect_0:wrclk_s1_chipselect -> wrclk:chipselect
-	wire  [31:0] mm_interconnect_0_wrclk_s1_readdata;                         // wrclk:readdata -> mm_interconnect_0:wrclk_s1_readdata
-	wire   [1:0] mm_interconnect_0_wrclk_s1_address;                          // mm_interconnect_0:wrclk_s1_address -> wrclk:address
-	wire         mm_interconnect_0_wrclk_s1_write;                            // mm_interconnect_0:wrclk_s1_write -> wrclk:write_n
-	wire  [31:0] mm_interconnect_0_wrclk_s1_writedata;                        // mm_interconnect_0:wrclk_s1_writedata -> wrclk:writedata
+	wire         mm_interconnect_0_reset_pulsecounter_s1_chipselect;          // mm_interconnect_0:reset_pulseCounter_s1_chipselect -> reset_pulseCounter:chipselect
+	wire  [31:0] mm_interconnect_0_reset_pulsecounter_s1_readdata;            // reset_pulseCounter:readdata -> mm_interconnect_0:reset_pulseCounter_s1_readdata
+	wire   [1:0] mm_interconnect_0_reset_pulsecounter_s1_address;             // mm_interconnect_0:reset_pulseCounter_s1_address -> reset_pulseCounter:address
+	wire         mm_interconnect_0_reset_pulsecounter_s1_write;               // mm_interconnect_0:reset_pulseCounter_s1_write -> reset_pulseCounter:write_n
+	wire  [31:0] mm_interconnect_0_reset_pulsecounter_s1_writedata;           // mm_interconnect_0:reset_pulseCounter_s1_writedata -> reset_pulseCounter:writedata
 	wire         mm_interconnect_0_wrreg_s1_chipselect;                       // mm_interconnect_0:wrreg_s1_chipselect -> wrreg:chipselect
 	wire  [31:0] mm_interconnect_0_wrreg_s1_readdata;                         // wrreg:readdata -> mm_interconnect_0:wrreg_s1_readdata
 	wire   [1:0] mm_interconnect_0_wrreg_s1_address;                          // mm_interconnect_0:wrreg_s1_address -> wrreg:address
@@ -71,9 +72,11 @@ module Arquitetura (
 	wire  [31:0] mm_interconnect_0_wrreg_s1_writedata;                        // mm_interconnect_0:wrreg_s1_writedata -> wrreg:writedata
 	wire  [31:0] mm_interconnect_0_wrfull_s1_readdata;                        // wrfull:readdata -> mm_interconnect_0:wrfull_s1_readdata
 	wire   [1:0] mm_interconnect_0_wrfull_s1_address;                         // mm_interconnect_0:wrfull_s1_address -> wrfull:address
+	wire  [31:0] mm_interconnect_0_screen_s1_readdata;                        // screen:readdata -> mm_interconnect_0:screen_s1_readdata
+	wire   [1:0] mm_interconnect_0_screen_s1_address;                         // mm_interconnect_0:screen_s1_address -> screen:address
 	wire         irq_mapper_receiver0_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [data_A:reset_n, data_B:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, rst_translator:in_reset, sysid_qsys_0:reset_n, wrclk:reset_n, wrfull:reset_n, wrreg:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [data_A:reset_n, data_B:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, reset_pulseCounter:reset_n, rst_translator:in_reset, screen:reset_n, sysid_qsys_0:reset_n, wrfull:reset_n, wrreg:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
 
@@ -155,6 +158,25 @@ module Arquitetura (
 		.freeze     (1'b0)                                              // (terminated)
 	);
 
+	Arquitetura_reset_pulseCounter reset_pulsecounter (
+		.clk        (clk_clk),                                            //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                    //               reset.reset_n
+		.address    (mm_interconnect_0_reset_pulsecounter_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_reset_pulsecounter_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_reset_pulsecounter_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_reset_pulsecounter_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_reset_pulsecounter_s1_readdata),   //                    .readdata
+		.out_port   (reset_pulsecounter_export)                           // external_connection.export
+	);
+
+	Arquitetura_screen screen (
+		.clk      (clk_clk),                              //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),      //               reset.reset_n
+		.address  (mm_interconnect_0_screen_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_screen_s1_readdata), //                    .readdata
+		.in_port  (screen_export)                         // external_connection.export
+	);
+
 	Arquitetura_sysid_qsys_0 sysid_qsys_0 (
 		.clock    (clk_clk),                                               //           clk.clk
 		.reset_n  (~rst_controller_reset_out_reset),                       //         reset.reset_n
@@ -162,18 +184,7 @@ module Arquitetura (
 		.address  (mm_interconnect_0_sysid_qsys_0_control_slave_address)   //              .address
 	);
 
-	Arquitetura_wrclk wrclk (
-		.clk        (clk_clk),                               //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),       //               reset.reset_n
-		.address    (mm_interconnect_0_wrclk_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_wrclk_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_wrclk_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_wrclk_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_wrclk_s1_readdata),   //                    .readdata
-		.out_port   (wrclk_export)                           // external_connection.export
-	);
-
-	Arquitetura_wrfull wrfull (
+	Arquitetura_screen wrfull (
 		.clk      (clk_clk),                              //                 clk.clk
 		.reset_n  (~rst_controller_reset_out_reset),      //               reset.reset_n
 		.address  (mm_interconnect_0_wrfull_s1_address),  //                  s1.address
@@ -181,7 +192,7 @@ module Arquitetura (
 		.in_port  (wrfull_export)                         // external_connection.export
 	);
 
-	Arquitetura_wrclk wrreg (
+	Arquitetura_reset_pulseCounter wrreg (
 		.clk        (clk_clk),                               //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),       //               reset.reset_n
 		.address    (mm_interconnect_0_wrreg_s1_address),    //                  s1.address
@@ -239,13 +250,15 @@ module Arquitetura (
 		.onchip_memory2_0_s1_byteenable                 (mm_interconnect_0_onchip_memory2_0_s1_byteenable),            //                                         .byteenable
 		.onchip_memory2_0_s1_chipselect                 (mm_interconnect_0_onchip_memory2_0_s1_chipselect),            //                                         .chipselect
 		.onchip_memory2_0_s1_clken                      (mm_interconnect_0_onchip_memory2_0_s1_clken),                 //                                         .clken
+		.reset_pulseCounter_s1_address                  (mm_interconnect_0_reset_pulsecounter_s1_address),             //                    reset_pulseCounter_s1.address
+		.reset_pulseCounter_s1_write                    (mm_interconnect_0_reset_pulsecounter_s1_write),               //                                         .write
+		.reset_pulseCounter_s1_readdata                 (mm_interconnect_0_reset_pulsecounter_s1_readdata),            //                                         .readdata
+		.reset_pulseCounter_s1_writedata                (mm_interconnect_0_reset_pulsecounter_s1_writedata),           //                                         .writedata
+		.reset_pulseCounter_s1_chipselect               (mm_interconnect_0_reset_pulsecounter_s1_chipselect),          //                                         .chipselect
+		.screen_s1_address                              (mm_interconnect_0_screen_s1_address),                         //                                screen_s1.address
+		.screen_s1_readdata                             (mm_interconnect_0_screen_s1_readdata),                        //                                         .readdata
 		.sysid_qsys_0_control_slave_address             (mm_interconnect_0_sysid_qsys_0_control_slave_address),        //               sysid_qsys_0_control_slave.address
 		.sysid_qsys_0_control_slave_readdata            (mm_interconnect_0_sysid_qsys_0_control_slave_readdata),       //                                         .readdata
-		.wrclk_s1_address                               (mm_interconnect_0_wrclk_s1_address),                          //                                 wrclk_s1.address
-		.wrclk_s1_write                                 (mm_interconnect_0_wrclk_s1_write),                            //                                         .write
-		.wrclk_s1_readdata                              (mm_interconnect_0_wrclk_s1_readdata),                         //                                         .readdata
-		.wrclk_s1_writedata                             (mm_interconnect_0_wrclk_s1_writedata),                        //                                         .writedata
-		.wrclk_s1_chipselect                            (mm_interconnect_0_wrclk_s1_chipselect),                       //                                         .chipselect
 		.wrfull_s1_address                              (mm_interconnect_0_wrfull_s1_address),                         //                                wrfull_s1.address
 		.wrfull_s1_readdata                             (mm_interconnect_0_wrfull_s1_readdata),                        //                                         .readdata
 		.wrreg_s1_address                               (mm_interconnect_0_wrreg_s1_address),                          //                                 wrreg_s1.address

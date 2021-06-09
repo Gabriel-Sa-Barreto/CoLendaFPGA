@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'Arquitetura'
  * SOPC Builder design path: ../../Arquitetura.sopcinfo
  *
- * Generated: Wed Jun 02 15:58:48 BRT 2021
+ * Generated: Wed Jun 09 09:20:44 BRT 2021
  */
 
 /*
@@ -156,19 +156,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x110b8
+#define ALT_STDERR_BASE 0x110d8
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x110b8
+#define ALT_STDIN_BASE 0x110d8
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x110b8
+#define ALT_STDOUT_BASE 0x110d8
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -182,7 +182,7 @@
  */
 
 #define ALT_MODULE_CLASS_data_A altera_avalon_pio
-#define DATA_A_BASE 0x11090
+#define DATA_A_BASE 0x110b0
 #define DATA_A_BIT_CLEARING_EDGE_REGISTER 0
 #define DATA_A_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DATA_A_CAPTURE 0
@@ -209,7 +209,7 @@
  */
 
 #define ALT_MODULE_CLASS_data_B altera_avalon_pio
-#define DATA_B_BASE 0x11080
+#define DATA_B_BASE 0x110a0
 #define DATA_B_BIT_CLEARING_EDGE_REGISTER 0
 #define DATA_B_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DATA_B_CAPTURE 0
@@ -247,7 +247,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x110b8
+#define JTAG_UART_0_BASE 0x110d8
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -289,46 +289,73 @@
 
 
 /*
+ * reset_pulseCounter configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_reset_pulseCounter altera_avalon_pio
+#define RESET_PULSECOUNTER_BASE 0x11090
+#define RESET_PULSECOUNTER_BIT_CLEARING_EDGE_REGISTER 0
+#define RESET_PULSECOUNTER_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define RESET_PULSECOUNTER_CAPTURE 0
+#define RESET_PULSECOUNTER_DATA_WIDTH 1
+#define RESET_PULSECOUNTER_DO_TEST_BENCH_WIRING 0
+#define RESET_PULSECOUNTER_DRIVEN_SIM_VALUE 0
+#define RESET_PULSECOUNTER_EDGE_TYPE "NONE"
+#define RESET_PULSECOUNTER_FREQ 50000000
+#define RESET_PULSECOUNTER_HAS_IN 0
+#define RESET_PULSECOUNTER_HAS_OUT 1
+#define RESET_PULSECOUNTER_HAS_TRI 0
+#define RESET_PULSECOUNTER_IRQ -1
+#define RESET_PULSECOUNTER_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define RESET_PULSECOUNTER_IRQ_TYPE "NONE"
+#define RESET_PULSECOUNTER_NAME "/dev/reset_pulseCounter"
+#define RESET_PULSECOUNTER_RESET_VALUE 0
+#define RESET_PULSECOUNTER_SPAN 16
+#define RESET_PULSECOUNTER_TYPE "altera_avalon_pio"
+
+
+/*
+ * screen configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_screen altera_avalon_pio
+#define SCREEN_BASE 0x11060
+#define SCREEN_BIT_CLEARING_EDGE_REGISTER 0
+#define SCREEN_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define SCREEN_CAPTURE 0
+#define SCREEN_DATA_WIDTH 1
+#define SCREEN_DO_TEST_BENCH_WIRING 0
+#define SCREEN_DRIVEN_SIM_VALUE 0
+#define SCREEN_EDGE_TYPE "NONE"
+#define SCREEN_FREQ 50000000
+#define SCREEN_HAS_IN 1
+#define SCREEN_HAS_OUT 0
+#define SCREEN_HAS_TRI 0
+#define SCREEN_IRQ -1
+#define SCREEN_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SCREEN_IRQ_TYPE "NONE"
+#define SCREEN_NAME "/dev/screen"
+#define SCREEN_RESET_VALUE 0
+#define SCREEN_SPAN 16
+#define SCREEN_TYPE "altera_avalon_pio"
+
+
+/*
  * sysid_qsys_0 configuration
  *
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x110b0
+#define SYSID_QSYS_0_BASE 0x110d0
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1622659809
+#define SYSID_QSYS_0_TIMESTAMP 1623240844
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
-
-
-/*
- * wrclk configuration
- *
- */
-
-#define ALT_MODULE_CLASS_wrclk altera_avalon_pio
-#define WRCLK_BASE 0x11070
-#define WRCLK_BIT_CLEARING_EDGE_REGISTER 0
-#define WRCLK_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define WRCLK_CAPTURE 0
-#define WRCLK_DATA_WIDTH 1
-#define WRCLK_DO_TEST_BENCH_WIRING 0
-#define WRCLK_DRIVEN_SIM_VALUE 0
-#define WRCLK_EDGE_TYPE "NONE"
-#define WRCLK_FREQ 50000000
-#define WRCLK_HAS_IN 0
-#define WRCLK_HAS_OUT 1
-#define WRCLK_HAS_TRI 0
-#define WRCLK_IRQ -1
-#define WRCLK_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define WRCLK_IRQ_TYPE "NONE"
-#define WRCLK_NAME "/dev/wrclk"
-#define WRCLK_RESET_VALUE 0
-#define WRCLK_SPAN 16
-#define WRCLK_TYPE "altera_avalon_pio"
 
 
 /*
@@ -337,7 +364,7 @@
  */
 
 #define ALT_MODULE_CLASS_wrfull altera_avalon_pio
-#define WRFULL_BASE 0x11050
+#define WRFULL_BASE 0x11070
 #define WRFULL_BIT_CLEARING_EDGE_REGISTER 0
 #define WRFULL_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define WRFULL_CAPTURE 0
@@ -364,7 +391,7 @@
  */
 
 #define ALT_MODULE_CLASS_wrreg altera_avalon_pio
-#define WRREG_BASE 0x11060
+#define WRREG_BASE 0x11080
 #define WRREG_BIT_CLEARING_EDGE_REGISTER 0
 #define WRREG_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define WRREG_CAPTURE 0

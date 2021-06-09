@@ -21,9 +21,9 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 248 192)
+	(rect 16 16 248 224)
 	(text "video_processor" (rect 5 0 72 12)(font "Arial" ))
-	(text "inst" (rect 8 160 20 172)(font "Arial" ))
+	(text "inst" (rect 8 192 20 204)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -115,7 +115,14 @@ https://fpgasoftware.intel.com/eula.
 		(text "out_clk100" (rect 170 139 211 151)(font "Arial" ))
 		(line (pt 232 144)(pt 216 144)(line_width 1))
 	)
+	(port
+		(pt 232 160)
+		(output)
+		(text "out_clk25" (rect 0 0 37 12)(font "Arial" ))
+		(text "out_clk25" (rect 174 155 211 167)(font "Arial" ))
+		(line (pt 232 160)(pt 216 160)(line_width 1))
+	)
 	(drawing
-		(rectangle (rect 16 16 216 160)(line_width 1))
+		(rectangle (rect 16 16 216 192)(line_width 1))
 	)
 )
