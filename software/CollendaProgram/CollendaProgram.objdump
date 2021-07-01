@@ -39,7 +39,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  10 .debug_abbrev 00001e54  00000000  00000000  0000a275  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_line   00001fd9  00000000  00000000  0000c0c9  2**0
+ 11 .debug_line   00001fda  00000000  00000000  0000c0c9  2**0
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_frame  00000264  00000000  00000000  0000e0a4  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -295,7 +295,7 @@ int main(){
     80a4:	dc800415 	stw	r18,16(sp)
     80a8:	dc400315 	stw	r17,12(sp)
     80ac:	dc000215 	stw	r16,8(sp)
-	unsigned long dataB_r4   = 0b00100011001000110010000000000000;
+	unsigned long dataB_r4   = 0b00100011001000110010000000000001;
     80b0:	04c8c8f4 	movhi	r19,8995
 	unsigned long dataB_r2   = 0b00100011001000001100100000000000;
     80b4:	0488c874 	movhi	r18,8993
@@ -303,9 +303,9 @@ int main(){
     80b8:	0448c8b4 	movhi	r17,8994
 	unsigned long dataB_r0   = 0b00100110010000100101100000000000;
     80bc:	040990b4 	movhi	r16,9794
-						dataB_r4 = dataB_r4 - MASK_X; 
-					}
-				}
+				//if(result == 1){
+				//	printf("[INFO] Dados de r3 Inseridos\n");
+				//}
 			}else{
 				IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);         //Desabilita o sinal de escrita
 				printf("[INFO] FILA CHEIA\n");
@@ -324,8 +324,8 @@ int main(){
     80e0:	d8800015 	stw	r2,0(sp)
 	int direction_r0  = 1;
     80e4:	07000044 	movi	fp,1
-	unsigned long dataB_r4   = 0b00100011001000110010000000000000;
-    80e8:	9cc80004 	addi	r19,r19,8192
+	unsigned long dataB_r4   = 0b00100011001000110010000000000001;
+    80e8:	9cc80044 	addi	r19,r19,8193
 	unsigned long dataB_r2   = 0b00100011001000001100100000000000;
     80ec:	94b20004 	addi	r18,r18,-14336
 	unsigned long dataB_r1   = 0b00100011001000011001000000000000;
@@ -335,9 +335,9 @@ int main(){
 				printf("[INFO] FILA CHEIA\n");
     80f8:	bde17e04 	addi	r23,r23,-31240
 						dataB_r4 = dataB_r4 - MASK_X; 
-    80fc:	053ff834 	movhi	r20,65504
+    80fc:	053ffa34 	movhi	r20,65512
 						dataB_r4 = dataB_r4 + MASK_X;
-    8100:	05400834 	movhi	r21,32
+    8100:	05400634 	movhi	r21,24
 		if(IORD(SCREEN_BASE,0) == 1){
     8104:	00800074 	movhi	r2,1
     8108:	10841837 	ldwio	r2,4192(r2)

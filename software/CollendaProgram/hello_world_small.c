@@ -5,7 +5,7 @@
 #include "altera_avalon_pio_regs.h"
 #include "system.h"
 #include <unistd.h>
-#define MASK_X 0b00000000001000000000000000000000
+#define MASK_X 0b00000000000110000000000000000000
 #define MASK_Y 0b00000000000000000000011000000000
 #define WRFULL_BASE 0x11070
 #define WRREG_BASE  0x11080
@@ -42,7 +42,7 @@ int main(){
 	unsigned long dataB_r3   = 0b00000000000000000000000100011010;
 	unsigned long dataA_r3   = 0b00000000000000111111111111110001;
 
-	unsigned long dataB_r4   = 0b00100011001000110010000000000000;
+	unsigned long dataB_r4   = 0b00100011001000110010000000000001;
 	unsigned long dataA_r4   = 0b00000000000000000000000000110000;
 	int convert = 0;
 	int result = 0;
@@ -103,11 +103,6 @@ int main(){
 					}
 				}
 				
-				//result = sendInstruction(dataA_r3, dataB_r3);  // Envia quarta instrução
-				//if(result == 1){
-				//	printf("[INFO] Dados de r3 Inseridos\n");
-				//}
-				
 				result = sendInstruction(dataA_r4, dataB_r4);   // Envia segunda instrução
 				if(result == 1){
 					convert = dataB_r4 & MASX_TO_SHIFT_X;
@@ -121,6 +116,11 @@ int main(){
 						dataB_r4 = dataB_r4 - MASK_X; 
 					}
 				}
+
+				//result = sendInstruction(dataA_r3, dataB_r3);  // Envia quarta instrução
+				//if(result == 1){
+				//	printf("[INFO] Dados de r3 Inseridos\n");
+				//}
 			}else{
 				IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);         //Desabilita o sinal de escrita
 				printf("[INFO] FILA CHEIA\n");
