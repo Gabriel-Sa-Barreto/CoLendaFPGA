@@ -5,7 +5,7 @@
 #include "altera_avalon_pio_regs.h"
 #include "system.h"
 #include <unistd.h>
-#define MASK_X 0b00000000000110000000000000000000
+#define MASK_X 0b00000000001010000000000000000000
 #define MASK_Y 0b00000000000000000000011000000000
 #define WRFULL_BASE 0x11070
 #define WRREG_BASE  0x11080

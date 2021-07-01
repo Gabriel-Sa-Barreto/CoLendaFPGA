@@ -335,9 +335,9 @@ int main(){
 				printf("[INFO] FILA CHEIA\n");
     80f8:	bde17e04 	addi	r23,r23,-31240
 						dataB_r4 = dataB_r4 - MASK_X; 
-    80fc:	053ffa34 	movhi	r20,65512
+    80fc:	053ff634 	movhi	r20,65496
 						dataB_r4 = dataB_r4 + MASK_X;
-    8100:	05400634 	movhi	r21,24
+    8100:	05400a34 	movhi	r21,40
 		if(IORD(SCREEN_BASE,0) == 1){
     8104:	00800074 	movhi	r2,1
     8108:	10841837 	ldwio	r2,4192(r2)
