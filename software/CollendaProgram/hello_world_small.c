@@ -37,20 +37,20 @@ typedef struct sprite{
 } Sprite;
 /*---------------------------------------------------------------------------------------------------------------------------*/
 
-/*-------------------MACRO DAS FUNÇÕES-------------------------*/
+/*-------------------PROTÓTIPO DAS FUNÇÕES-------------------------*/
 int sendInstruction(unsigned long dataA, unsigned long dataB);
 unsigned long position_instruction_builder(int x, int y, int offset);
-/*-----------------FIM DAS MACROS------------------------------*/
+unsigned long dataA_builder(int opcode, int reg, int memory_address);
+/*-----------------------------------------------------------------*/
 
 /*----------------PROCEDIMENTOS--------------------------------*/
 void increase_coordinate(Sprite *sp);
+void initialize_sprite(int step_x, int step_y, int offset, Sprite *sp);
 /*-------------------------------------------------------------*/
 
 /*---------------FUNÇÂO PRINCIPAL-------------------------*/
 int main(){
 	int number_screen = 0; //Variável que conta o número de telas impressas.
-	int result = 0;        //Variável que define se uma instrução foi enviada. (1 - Sim/ 0 - Não)
-	//int convert = 0;
 	srand(time(NULL));
 	
 	Sprite ast_1;
@@ -62,83 +62,23 @@ int main(){
 	Sprite ast_7;
 	Sprite ast_8;
 
+	initialize_sprite(5,5,0,&ast_1);
+	initialize_sprite(5,5,0,&ast_2);
+	initialize_sprite(5,5,0,&ast_3);
+	initialize_sprite(5,5,0,&ast_4);
+	initialize_sprite(5,5,0,&ast_5);
+	initialize_sprite(5,5,0,&ast_6);
+	initialize_sprite(5,5,0,&ast_7);
+	initialize_sprite(5,5,0,&ast_8);
 
-	/*----Definição dos dados iniciais de cada sprite-----*/
-	ast_1.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_1.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_1.offset    = 0;                    //definição do offset de memória.
-	ast_1.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_1.inst_B    = position_instruction_builder(ast_1.coord_x, ast_1.coord_y, ast_1.offset);
-	ast_1.inst_A    = 0b00000000000000000000000000010000;
-	ast_1.mask_x    = 0b00000000001010000000000000000000;
-	ast_1.mask_y    = 0b00000000000000000000001000000000;
-
-
-	ast_2.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_2.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_2.offset    = 0;                    //definição do offset de memória.
-	ast_2.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_2.inst_B    = position_instruction_builder(ast_2.coord_x, ast_2.coord_y, ast_2.offset);
-	ast_2.inst_A    = 0b00000000000000000000000000100000;
-	ast_2.mask_x    = 0b00000000001010000000000000000000;
-	ast_2.mask_y    = 0b00000000000000000000001000000000;
-
-	ast_3.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_3.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_3.offset    = 0;                    //definição do offset de memória.
-	ast_3.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_3.inst_B    = position_instruction_builder(ast_3.coord_x, ast_3.coord_y, ast_3.offset);
-	ast_3.inst_A    = 0b00000000000000000000000000110000;
-	ast_3.mask_x    = 0b00000000001010000000000000000000;
-	ast_3.mask_y    = 0b00000000000000000000001000000000;
-
-
-	ast_4.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_4.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_4.offset    = 1;                    //definição do offset de memória.
-	ast_4.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_4.inst_B    = position_instruction_builder(ast_4.coord_x, ast_4.coord_y, ast_4.offset);
-	ast_4.inst_A    = 0b00000000000000000000000001000000;
-	ast_4.mask_x    = 0b00000000001010000000000000000000;
-	ast_4.mask_y    = 0b00000000000000000000001000000000;
-
-	ast_5.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_5.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_5.offset    = 2;                    //definição do offset de memória.
-	ast_5.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_5.inst_B    = position_instruction_builder(ast_5.coord_x, ast_5.coord_y, ast_5.offset);
-	ast_5.inst_A    = 0b00000000000000000000000001010000;
-	ast_5.mask_x    = 0b00000000001010000000000000000000;
-	ast_5.mask_y    = 0b00000000000000000000101000000000;
-
-
-	ast_6.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_6.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_6.offset    = 1;                    //definição do offset de memória.
-	ast_6.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_6.inst_B    = position_instruction_builder(ast_6.coord_x, ast_6.coord_y, ast_6.offset);
-	ast_6.inst_A    = 0b00000000000000000000000001100000;
-	ast_6.mask_x    = 0b00000000001010000000000000000000;
-	ast_6.mask_y    = 0b00000000000000000000101000000000;
-
-	ast_7.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_7.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_7.offset    = 2;                    //definição do offset de memória.
-	ast_7.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_7.inst_B    = position_instruction_builder(ast_7.coord_x, ast_7.coord_y, ast_7.offset);
-	ast_7.inst_A    = 0b00000000000000000000000001110000;
-	ast_7.mask_x    = 0b00000000001010000000000000000000;
-	ast_7.mask_y    = 0b00000000000000000000101000000000;
-
-
-	ast_8.coord_x   = 1 + rand() % 639;     //sorteio da posição x.
-	ast_8.coord_y   = 1 + rand() % 439;     //sorteio da posição y.
-	ast_8.offset    = 1;                    //definição do offset de memória.
-	ast_8.direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
-	ast_8.inst_B    = position_instruction_builder(ast_8.coord_x, ast_8.coord_y, ast_8.offset);
-	ast_8.inst_A    = 0b00000000000000000000000010000000;
-	ast_8.mask_x    = 0b00000000001010000000000000000000;
-	ast_8.mask_y    = 0b00000000000000000000001000000000;
+	ast_1.inst_A = dataA_builder(0,1,0);
+	ast_2.inst_A = dataA_builder(0,2,0);
+	ast_3.inst_A = dataA_builder(0,3,0);
+	ast_4.inst_A = dataA_builder(0,4,0);
+	ast_5.inst_A = dataA_builder(0,5,0);
+	ast_6.inst_A = dataA_builder(0,6,0);
+	ast_7.inst_A = dataA_builder(0,7,0);
+	ast_8.inst_A = dataA_builder(0,8,0);
 
 	/*----------------------------------------------------------------------------------------*/
 
@@ -153,31 +93,24 @@ int main(){
 			number_screen = 0;
 			increase_coordinate(&ast_1);
 			increase_coordinate(&ast_2);
-			increase_coordinate(&ast_5);
-			increase_coordinate(&ast_6);
-			increase_coordinate(&ast_7);
-			increase_coordinate(&ast_8);
+			increase_coordinate(&ast_3);
+			increase_coordinate(&ast_4);
+			//increase_coordinate(&ast_5);
+			//increase_coordinate(&ast_6);
+			//increase_coordinate(&ast_7);
+			//increase_coordinate(&ast_8);
 			if(IORD(WRFULL_BASE,0) == 0){                           //FIFO não está cheia
 				sendInstruction(ast_1.inst_A, ast_1.inst_B);
 				sendInstruction(ast_2.inst_A, ast_2.inst_B);
-				/*if(result == 1){
-					increase_coordinate(&ast_2);
-				}
-				result = sendInstruction(ast_3.inst_A, ast_3.inst_B);
-				if(result == 1){
-					increase_coordinate(&ast_3);
-				}
-				result = sendInstruction(ast_4.inst_A, ast_4.inst_B);
-				if(result == 1){
-					increase_coordinate(&ast_4);
-				}*/
-				result = sendInstruction(ast_5.inst_A, ast_5.inst_B);
-				result = sendInstruction(ast_6.inst_A, ast_6.inst_B);
-				result = sendInstruction(ast_7.inst_A, ast_7.inst_B);
-				result = sendInstruction(ast_8.inst_A, ast_8.inst_B);
+				sendInstruction(ast_3.inst_A, ast_3.inst_B); //esse
+				sendInstruction(ast_4.inst_A, ast_4.inst_B); //esse
+				//sendInstruction(ast_5.inst_A, ast_5.inst_B);	
+				//sendInstruction(ast_6.inst_A, ast_6.inst_B);
+				//sendInstruction(ast_7.inst_A, ast_7.inst_B);
+				//sendInstruction(ast_8.inst_A, ast_8.inst_B);
 			}else{
 				IOWR_ALTERA_AVALON_PIO_DATA(WRREG_BASE,0);         //Desabilita o sinal de escrita
-				printf("[INFO] FILA CHEIA\n");
+				//printf("[INFO] FILA CHEIA\n");
 			}
 		}
 	}
@@ -197,43 +130,87 @@ void increase_coordinate(Sprite *sp){
 	switch((*sp).direction){
 		case 0:                   							//0 graus   (esquerda)
 			(*sp).coord_x -= step_x; 						//Atualiza a coordenada X.
-			(*sp).inst_B  -= (*sp).mask_x;  		            //Atualiza os bits de instrução.
+			(*sp).inst_B  -= (*sp).mask_x;  		        //Atualiza os bits de instrução.
+			if((*sp).coord_x < 1){                          //Realiza a troca de posição do sprite ao chegar no limite esquerdo da tela.
+				(*sp).coord_x = 640;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
-		case 1:                                              //45 graus  (diagonal superior direita)
+		case 1:                                             //45 graus  (diagonal superior direita)
 			(*sp).coord_x += step_x; 						//Atualiza a coordenada X.
-			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  += (*sp).mask_x;  		            //Atualiza os bits de instrução em X.
-			(*sp).inst_B  += (*sp).mask_y;  		            //Atualiza os bits de instrução em Y.
+			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  += (*sp).mask_x;  		        //Atualiza os bits de instrução em X.
+			(*sp).inst_B  -= (*sp).mask_y;  		        //Atualiza os bits de instrução em Y.
+			if((*sp).coord_y < 0){                          //Realiza a troca de posição do sprite ao chegar no limite superior da tela.
+				(*sp).coord_y = 480;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}else if((*sp).coord_x > 640){                  //Realiza a troca de posição do sprite ao chegar no limite direito da tela.
+				(*sp).coord_x = 0;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
-		case 2:                                              //90 graus  (pra cima)
-			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  += (*sp).mask_y;  		            //Atualiza os bits de instrução.
+		case 2:                                             //90 graus  (pra cima)
+			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  -= (*sp).mask_y;  		        //Atualiza os bits de instrução.
+			if((*sp).coord_y < 0){                          //Realiza a troca de posição do sprite ao chegar no limite superior da tela.
+				(*sp).coord_y = 480;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
 		case 3:          									//135 graus (diagonal superior esquerda)
 			(*sp).coord_x -= step_x; 						//Atualiza a coordenada X.
-			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  -= (*sp).mask_x;  		            //Atualiza os bits de instrução em X.
-			(*sp).inst_B  += (*sp).mask_y;  		            //Atualiza os bits de instrução em Y.
+			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  -= (*sp).mask_x;  		        //Atualiza os bits de instrução em X.
+			(*sp).inst_B  -= (*sp).mask_y;  		        //Atualiza os bits de instrução em Y.
+			if((*sp).coord_y < 0){                          //Realiza a troca de posição do sprite ao chegar no limite superior da tela.
+				(*sp).coord_y = 480;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}else if((*sp).coord_x < 1){                    //Realiza a troca de posição do sprite ao chegar no limite esquerdo da tela.
+				(*sp).coord_x = 640;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
 		case 4:          									//180 graus (direita)
 			(*sp).coord_x += step_x; 						//Atualiza a coordenada X.
-			(*sp).inst_B  += (*sp).mask_x;  		            //Atualiza os bits de instrução.
+			(*sp).inst_B  += (*sp).mask_x;  		        //Atualiza os bits de instrução.
+			if((*sp).coord_x > 640){                        //Realiza a troca de posição do sprite ao chegar no limite direito da tela.
+				(*sp).coord_x = 0;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
 		case 5:          									//225 graus (diagonal inferior esquerda)
 			(*sp).coord_x -= step_x; 						//Atualiza a coordenada X.
-			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  -= (*sp).mask_x;  		            //Atualiza os bits de instrução em X.
-			(*sp).inst_B  -= (*sp).mask_y;  		            //Atualiza os bits de instrução em Y.
+			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  -= (*sp).mask_x;  		        //Atualiza os bits de instrução em X.
+			(*sp).inst_B  += (*sp).mask_y;  		        //Atualiza os bits de instrução em Y.
+			if((*sp).coord_y > 480){                        //Realiza a troca de posição do sprite ao chegar no limite inferior da tela.
+				(*sp).coord_y = 0;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}else if((*sp).coord_x < 1){                    //Realiza a troca de posição do sprite ao chegar no limite esquerdo da tela.
+				(*sp).coord_x = 640;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
 		case 6:                                              //270 graus (pra baixo)
-			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  -= (*sp).mask_y;  		            //Atualiza os bits de instrução.
+			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  += (*sp).mask_y;  		        //Atualiza os bits de instrução.
+			if((*sp).coord_y > 480){                        //Realiza a troca de posição do sprite ao chegar no limite inferior da tela.
+				(*sp).coord_y = 0;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
-		case 7:                                              //315 graus (diagonal inferior direita)
+		case 7:                                             //315 graus (diagonal inferior direita)
 			(*sp).coord_x += step_x; 						//Atualiza a coordenada X.
-			(*sp).coord_y -= step_y; 						//Atualiza a coordenada Y.
-			(*sp).inst_B  += (*sp).mask_x;  		            //Atualiza os bits de instrução em X.
-			(*sp).inst_B  -= (*sp).mask_y;  		            //Atualiza os bits de instrução em Y.
+			(*sp).coord_y += step_y; 						//Atualiza a coordenada Y.
+			(*sp).inst_B  += (*sp).mask_x;  		        //Atualiza os bits de instrução em X.
+			(*sp).inst_B  += (*sp).mask_y;  		        //Atualiza os bits de instrução em Y.
+			if((*sp).coord_y > 480){                        //Realiza a troca de posição do sprite ao chegar no limite inferior da tela.
+				(*sp).coord_y = 480;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}else if((*sp).coord_x > 640){                  //Realiza a troca de posição do sprite ao chegar no limite direito da tela.
+				(*sp).coord_x = 640;
+				(*sp).inst_B  = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+			}
 			break;
 	}
 }
@@ -263,5 +240,33 @@ unsigned long position_instruction_builder(int x, int y, int offset){
     return data;		
 }
 
+void initialize_sprite(int step_x, int step_y, int offset, Sprite *sp){
+	(*sp).coord_x   = 1 + rand() % 639;     //sorteio da posição x.
+	(*sp).coord_y   = 1 + rand() % 439;     //sorteio da posição y.
+	(*sp).offset    = offset;               //definição do offset de memória.
+	(*sp).direction = rand() % 7;           //sorteio do ângulo inicial de movimento do sprite.
+	(*sp).inst_B    = position_instruction_builder((*sp).coord_x, (*sp).coord_y, (*sp).offset);
+	(*sp).inst_A    = 0;
+	(*sp).mask_x    = MASX_TO_SHIFT_X & (step_x << 19);
+	(*sp).mask_y    = MASX_TO_SHIFT_Y & (step_y << 9);
+}
+
+
+unsigned long dataA_builder(int opcode, int reg, int memory_address){
+	unsigned long data = 0b00000000000000000000000000000000;
+	switch(opcode){
+		case(0):                                //instrução de escrita no banco de registradores.
+			data = data | reg;                  //operação OR (adiciona o número do registrador)
+			data = data << 4;                   //deslocamento à esquerda em 4 posições.
+			data = data | opcode;               //operação OR (adiciona o opcode).
+			break;
+		case(1):                                //instrução de escrita na memória de sprites.
+			data = data | memory_address;       //operação OR (adiciona o endereço de memória)
+			data = data << 4;                   //deslocamento à esquerda em 4 posições.
+			data = data | opcode;               //operação OR (adiciona o opcode).
+			break;
+	}
+	return data;
+}
 
 

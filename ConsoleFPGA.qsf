@@ -55,7 +55,6 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_location_assignment PIN_R8 -to clk
 set_location_assignment PIN_A4 -to out_hsync
 set_location_assignment PIN_B5 -to out_vsync
 set_location_assignment PIN_F8 -to R[2]
@@ -72,6 +71,7 @@ set_location_assignment PIN_A15 -to rdempty_A
 set_location_assignment PIN_A13 -to rdempty_B
 set_location_assignment PIN_B1 -to wrfull_A
 set_location_assignment PIN_L3 -to wrfull_B
+set_global_assignment -name QIP_FILE Arquitetura/synthesis/Arquitetura.qip
 set_global_assignment -name VERILOG_FILE modulos/pulseCounter/pulseCounter.v
 set_global_assignment -name VERILOG_FILE modulos/frequency_divisor/frequency_divisor.v
 set_global_assignment -name VERILOG_FILE modulos/collision/refresh_flags.v
@@ -96,7 +96,7 @@ set_global_assignment -name VERILOG_FILE modulos/demultiplexador/demultiplexador
 set_global_assignment -name VERILOG_FILE modulos/decoderInstruction/decoderInstruction.v
 set_global_assignment -name VERILOG_FILE modulos/ControlUnit/controlUnit.v
 set_global_assignment -name VERILOG_FILE modulos/geradordData/geradorData.v
-set_global_assignment -name QIP_FILE Arquitetura/synthesis/Arquitetura.qip
 set_global_assignment -name BDF_FILE Arquitetura/ArquiteturaCollenda.bdf
 set_global_assignment -name QIP_FILE modulos/FIFO/FIFO.qip
+set_location_assignment PIN_R8 -to main_clk
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,8 +1,8 @@
 |ArquiteturaCollenda
 rdempty_A <= FIFO:dataA.rdempty
-clk => Arquitetura:inst9.clk_clk
-clk => video_processor:inst5.clk_FPGA
-clk => frequency_divisor:inst2.clk
+main_clk => Arquitetura:inst9.clk_clk
+main_clk => video_processor:inst5.clk_FPGA
+main_clk => frequency_divisor:inst2.clk
 reset => inst1.IN0
 reset => video_processor:inst5.reset
 rdempty_B <= FIFO:dataB.rdempty

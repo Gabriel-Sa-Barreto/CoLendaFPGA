@@ -68,7 +68,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "clk",
+					"name" : "main_clk",
 					"strict" : false
 				},
 				{
