@@ -1,0 +1,438 @@
+module mod_comparator #(parameter size_reg = 32, size_check = 20 ,x_init = 19, x_fim = 28, y_init = 9, y_fim = 18, sprLine = 20)
+(
+	input wire [size_reg-1:0] r0,
+	input wire [size_reg-1:0] r1,
+	input wire [size_reg-1:0] r2,
+	input wire [size_reg-1:0] r3,
+	input wire [size_reg-1:0] r4,
+	input wire [size_reg-1:0] r5,
+	input wire [size_reg-1:0] r6,
+	input wire [size_reg-1:0] r7,
+	input wire [size_reg-1:0] r8,
+	input wire [size_reg-1:0] r9,
+	input wire [size_reg-1:0] r10,
+	input wire [size_reg-1:0] r11,
+	input wire [size_reg-1:0] r12,
+	input wire [size_reg-1:0] r13,
+	input wire [size_reg-1:0] r14,
+	input wire [size_reg-1:0] r15,
+	input wire [size_reg-1:0] r16,
+	input wire [size_reg-1:0] r17,
+	input wire [size_reg-1:0] r18,
+	input wire [size_reg-1:0] r19,
+	input wire [size_reg-1:0] r20,
+	input wire [size_reg-1:0] r21,
+	input wire [size_reg-1:0] r22,
+	input wire [size_reg-1:0] r23,
+	input wire [size_reg-1:0] r24,
+	input wire [size_reg-1:0] r25,
+	input wire [size_reg-1:0] r26,
+	input wire [size_reg-1:0] r27,
+	input wire [size_reg-1:0] r28,
+	input wire [size_reg-1:0] r29,
+	input wire [size_reg-1:0] r30,
+	input wire [size_reg-1:0] r31,
+	input wire [size_check-1:0] check,
+
+	output reg [size_reg-1:0] register_read
+);
+
+wire result_0;
+wire result_1;
+wire result_2;
+wire result_3;
+wire result_4;
+wire result_5;
+wire result_6;
+wire result_7;
+wire result_8;
+wire result_9;
+wire result_10;
+wire result_11;
+wire result_12;
+wire result_13;
+wire result_14;
+wire result_15;
+wire result_16;
+wire result_17;
+wire result_18;
+wire result_19;
+wire result_20;
+wire result_21;
+wire result_22;
+wire result_23;
+wire result_24;
+wire result_25;
+wire result_26;
+wire result_27;
+wire result_28;
+wire result_29;
+wire result_30;
+wire result_31;
+
+wire [31:0] result_final;
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_0
+(
+	.rg(r0) ,					// input [size_reg-1:0] rg_sig
+	.check(check) ,			// input [size_check-1:0] check_sig
+	.compare(compare) ,		// input  compare_sig
+	.result(result_0) 		// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_1
+(
+	.rg(r1) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_1) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_2
+(
+	.rg(r2) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_2) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_3
+(
+	.rg(r3) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_3) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_4
+(
+	.rg(r4) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_4) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_5
+(
+	.rg(r5) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_5) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_6
+(
+	.rg(r6) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_6) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_7
+(
+	.rg(r7) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_7) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_8
+(
+	.rg(r8) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_8) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_9
+(
+	.rg(r9) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_9) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_10
+(
+	.rg(r10) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_10) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_11
+(
+	.rg(r11) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_11) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_12
+(
+	.rg(r12) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_12) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_13
+(
+	.rg(r13) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_13) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_14
+(
+	.rg(r14) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_14) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_15
+(
+	.rg(r15) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_15) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_16
+(
+	.rg(r16) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_16) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_17
+(
+	.rg(r17) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_17) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_18
+(
+	.rg(r18) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_18) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_19
+(
+	.rg(r19) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_19) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_20
+(
+	.rg(r20) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_20) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_21
+(
+	.rg(r21) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_21) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_22
+(
+	.rg(r22) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_22) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_23
+(
+	.rg(r23) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_23) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_24
+(
+	.rg(r24) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_24) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_25
+(
+	.rg(r25) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_25) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_26
+(
+	.rg(r26) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_26) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_27
+(
+	.rg(r27) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_27) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_28
+(
+	.rg(r28) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_28) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_29
+(
+	.rg(r29) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_29) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_30
+(
+	.rg(r30) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_30) 	// output  result_sig
+);
+
+comparator #(.size_reg(32), .size_check(20) , .x_inicio(x_init), .x_final(x_fim), .y_inicio(y_init), .y_final(y_fim), .spriteLine(sprLine))
+comparator_inst_31
+(
+	.rg(r31) ,	// input [size_reg-1:0] rg_sig
+	.check(check) ,	// input [size_check-1:0] check_sig
+	.compare(compare) ,	// input  compare_sig
+	.result(result_31) 	// output  result_sig
+);
+
+assign result_final = {
+						result_0,
+						result_1,
+						result_2,
+						result_3,
+						result_4,
+						result_5,
+						result_6,
+						result_7,
+						result_8,
+						result_9,
+						result_10,
+						result_11,
+						result_12,
+						result_13,
+						result_14,
+						result_15,
+						result_16,
+						result_17,
+						result_18,
+						result_19,
+						result_20,
+						result_21,
+						result_22,
+						result_23,
+						result_24,
+						result_25,
+						result_26,
+						result_27,
+						result_28,
+						result_29,
+						result_30,
+						result_31
+					};
+always @(*) begin
+	case(result_final)
+		32'b00000000000000000000000000000000: register_read = 32'h00000001;  //não é nenhum sprite
+		32'b10000000000000000000000000000000: register_read = r0;
+		32'b01000000000000000000000000000000: register_read = r1;
+		32'b00100000000000000000000000000000: register_read = r2;
+		32'b00010000000000000000000000000000: register_read = r3;
+		32'b00001000000000000000000000000000: register_read = r4;
+		32'b00000100000000000000000000000000: register_read = r5;
+		32'b00000010000000000000000000000000: register_read = r6;
+		32'b00000001000000000000000000000000: register_read = r7; 
+		32'b00000000100000000000000000000000: register_read = r8;
+		32'b00000000010000000000000000000000: register_read = r9;
+		32'b00000000001000000000000000000000: register_read = r10;
+		32'b00000000000100000000000000000000: register_read = r11; 
+		32'b00000000000010000000000000000000: register_read = r12;
+		32'b00000000000001000000000000000000: register_read = r13;
+		32'b00000000000000100000000000000000: register_read = r14;
+		32'b00000000000000010000000000000000: register_read = r15;
+		32'b00000000000000001000000000000000: register_read = r16;
+		32'b00000000000000000100000000000000: register_read = r17;
+		32'b00000000000000000010000000000000: register_read = r18;
+		32'b00000000000000000001000000000000: register_read = r19;
+		32'b00000000000000000000100000000000: register_read = r20;
+		32'b00000000000000000000010000000000: register_read = r21;
+		32'b00000000000000000000001000000000: register_read = r22;
+		32'b00000000000000000000000100000000: register_read = r23;
+		32'b00000000000000000000000010000000: register_read = r24;
+		32'b00000000000000000000000001000000: register_read = r25;
+		32'b00000000000000000000000000100000: register_read = r26;
+		32'b00000000000000000000000000010000: register_read = r27;
+		32'b00000000000000000000000000001000: register_read = r28;
+		32'b00000000000000000000000000000100: register_read = r29;
+		32'b00000000000000000000000000000010: register_read = r30;
+		32'b00000000000000000000000000000001: register_read = r31;
+		default:begin
+			register_read = 32'h00000001;
+		end
+	endcase
+end
+
+endmodule

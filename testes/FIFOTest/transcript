@@ -1,0 +1,142 @@
+# Loading project FIFOTest
+# reading /opt/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini
+cd /home/gabriel/Documents/ConsoleFPGA/testes/frequencyDivisorTeste
+vsim work.frequencyDivisor -t ns
+# vsim work.frequencyDivisor -t ns 
+# Start time: 21:41:23 on Apr 28,2021
+# ** Fatal: (vsim-3381) Obsolete library format for design unit. Design unit '/home/gabriel/Documents/ConsoleFPGA/testes/frequencyDivisorTeste/work.frequencyDivisor'
+#    Time: 0 ns  Iteration: 0  Root: / File: NOFILE
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 21:41:25 on Apr 28,2021, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 0
+# Loading project testFrequency_Divisor
+# Compile of frequency_divisor.v was successful.
+# Compile of testFrequencyDivisor.v was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -t ns work.frequencyDivisor
+# vsim -t ns work.frequencyDivisor 
+# Start time: 21:43:37 on Apr 28,2021
+# Loading work.frequencyDivisor
+# Loading work.frequency_divisor
+add wave -position insertpoint  \
+sim:/frequencyDivisor/clk
+add wave -position insertpoint  \
+sim:/frequencyDivisor/clk_out
+# Compile of frequency_divisor.v was successful.
+# Compile of testFrequencyDivisor.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.frequencyDivisor
+# Loading work.frequency_divisor
+force -freeze sim:/frequencyDivisor/clk 0 0, 1 {5 ns} -r 10
+run -all
+# clk=0,reset=1,clk_out=0
+# clk=1,reset=1,clk_out=0
+# clk=0,reset=1,clk_out=0
+# clk=1,reset=1,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=1
+# clk=0,reset=0,clk_out=1
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=0
+# clk=0,reset=0,clk_out=0
+# clk=1,reset=0,clk_out=1
+# ** Note: $finish    : /home/gabriel/Documents/ConsoleFPGA/testes/frequencyDivisorTeste/testFrequencyDivisor.v(23)
+#    Time: 520 ns  Iteration: 0  Instance: /frequencyDivisor
+# End time: 21:46:56 on Apr 28,2021, Elapsed time: 0:03:19
+# Errors: 0, Warnings: 0

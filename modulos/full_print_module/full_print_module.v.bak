@@ -1,0 +1,69 @@
+full_print_module #(parameter size_x1 = 10, size_y1 = 9, size_address1 = 17, bits_x_y_1 = 19, size_line1 = 20) 
+(
+	input wire               clk,
+	input wire               clk_pixel,
+	input wire               reset,
+	input wire  [31:0]       data_reg,
+	input wire               active_area,
+	input wire  [size_x-1:0] pixel_x,
+	input wire  [size_y-1:0] pixel_y,
+
+	output reg  [size_address-1:0]  memory_address,
+	output reg                     printtingScreen,
+	output wire [bits_x_y-1:0]     check_value
+);
+
+wire        sprite_on;
+wire        count_finished;
+wire [31:0] sprite_datas;
+wire [size_address-1:0] memory_address1;
+wire [size_address-1:0] memory_address2;
+wire out_printtingScreeen;
+
+printModule #(.size_x(size_x1),.size_y(size_y1),.size_address(size_address1),.bits_x_y(bits_x_y_1))
+printModule_inst
+(
+	.clk(clk) ,									// input  		      		 clk_sig
+	.clk_pixel(clk_pixel) ,						// input  		      		 clk_pixel_sig
+	.reset(reset) ,								// input  			  	     reset_sig
+	.data_reg(data_reg) ,						// input  [31:0]       		 data_reg_sig
+	.active_area(active_area) ,					// input   			  		 active_area_sig
+	.pixel_x(pixel_x) ,							// input  [size_x-1:0] 		 pixel_x_sig
+	.pixel_y(pixel_y) ,							// input  [size_y-1:0]       pixel_y_sig
+	.count_finished(count_finished) ,			// input  			  	     count_finished_sig
+	.sprite_datas(sprite_datas) ,				// output [31:0]      		 sprite_datas_sig
+	.memory_address(memory_address1) ,			// output [size_address-1:0] memory_address_sig
+	.printtingScreen(out_printtingScreen) ,	    // output  				     printtingScreen_sig
+	.check_value(check_value) ,					// output [bits_x_y-1:0] 	 check_value_sig
+	.sprite_on(sprite_on) 						// output  				     sprite_on_sig
+);
+
+
+sprite_line_counter #(.size_x(size_x1), .size_y(size_y1), .size_address(size_address1), .size_line(size_line1))
+sprite_line_counter_inst
+(
+	.clk_pixel(clk_pixel) ,						// input  clk_pixel_sig
+	.pixel_x(pixel_x) ,							// input [size_x-1:0] pixel_x_sig
+	.pixel_y(pixel_y) ,							// input [size_y-1:0] pixel_y_sig
+	.sprite_datas(sprite_datas) ,			    // input [31:0] sprite_datas_sig
+	.sprite_on(sprite_on) ,						// input  sprite_on_sig
+	.reset(reset) ,								// input  reset_sig
+	.memory_address(memory_address2) ,			// output [size_address-1:0] memory_address_sig
+	.count_finished(count_finished) 			// output  count_finished_sig
+);
+
+
+multiplexador #(.data_bits1(size_address), .data_bits2(size_address), .out_bits_size(size_address))
+multiplexador_inst
+(
+	.selector(sprite_on) ,	        // input  selector_sig
+	.data(memory_address1) ,	    // input [data_bits1-1:0] data_sig
+	.data2(memory_address2) ,	    // input [data_bits2-1:0] data2_sig
+	.out(out_sig) 	                // output [out_bits_size-1:0] out_sig
+);
+
+always @(negedge clk_pixel) begin
+	memory_address <= out_sig;
+	prittingScreen <= out_printtingScreen
+end
+endmodule

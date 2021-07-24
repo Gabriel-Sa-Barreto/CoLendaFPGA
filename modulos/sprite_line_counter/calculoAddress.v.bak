@@ -1,0 +1,62 @@
+module calculoAddress #(parameter size_x = 10, size_y = 10, size_address = 14, size_line = 20)
+(
+	input  wire                     clk_pixel,
+	input  wire  [size_x-1:0]       pixel_x,
+	input  wire  [size_y-1:0]       pixel_y,
+	input  wire  [31:0]             sprite_datas,
+	input  wire                     sprite_on,
+	input  wire                     current_state,
+	
+	output wire [size_address-1:0]  memory_address,
+);
+
+
+localparam offset = 400;
+
+/*-------------Registradores auxiliares no cálculo do endereço de memória--------------*/
+reg[9:0] sub_coord_y; 
+reg[8:0] aux_add_address;
+/*----------------------------------------------------------------------------*/
+
+/*----------------------Registradores auxiliares de saída---------------------------*/
+reg [size_address-1:0] out_memory_address;
+reg [size_address-1:0] aux_memory_address;
+/*-----------------------------------------------------------------------------------*/
+
+
+*--------Bloco always combinacional responsável por gerar o endereço de memória a ser acessado-----*/
+always @(pixel_x or pixel_y or sprite_on or sprite_datas or current_state) begin
+	sub_coord_y     = 10'd0;
+	aux_add_address = 9'd0;
+	aux_memory_address = 14'bxxxxxxxxxxxxxx;
+	
+	if(sprite_on == 1'b1) begin  //se o sprite_on está habilitado então uma linha de um sprite deve ser impressa.
+		//coordenada y inicial do sprite - pixel_y atual = diferença de linhas impressas
+		sub_coord_y = (sprite_datas[18:9] - pixel_y); 
+		aux_add_address = size_line * sub_coord_y; 
+		
+		if( (pixel_x == sprite_datas[28:19]) ) begin  //primeiro pixel da linha
+			//aux_memory_address = número do sprite(registrador) * offset  
+			  aux_memory_address = ( sprite_datas[8:0] * offset ) + aux_add_address;  
+		end
+		
+		if( (pixel_x > sprite_datas[28:19]) && ( pixel_x <= ( sprite_datas[28:19] + (size_line-1) ) ) ) begin
+			//ainda está dentro do limite da linha do sprite.
+			aux_memory_address = (sprite_datas[8:0] * offset) + state + aux_add_address; 
+		end
+	end
+	else begin
+		aux_memory_address = 14'bxxxxxxxxxxxxxx;
+	end
+end
+/*--------------------------------------------------------------------------------------------------*/
+
+endmodule
+
+
+always @(negedge clk_pixel) begin
+	out_memory_address <= aux_memory_address;
+end
+
+/*---------Saída do endereço de memória a ser acessado-------*/
+assign memory_address = out_memory_address;

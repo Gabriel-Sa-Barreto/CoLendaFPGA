@@ -1,0 +1,27 @@
+/**
+//////////////////////////////////////////////////////////////////////////
+    AUTOR: Gabriel Sa Barreto Alves
+DESCRICAO: modulo responsavel por realizar o processamento dos pixeis que serao
+jogados na tela.
+--------------------------------------------------------------------------
+ENTRADAS: 
+       n_reg: numero do registrador a ser escrito ou lido.
+        data: dado a ser escrito no registrador desejado 
+     written: sinal de escrita/leitura
+  selectFied: seleciona qual intervalo de bits na entrada "data" sera capturado.
+SAIDAS:		 
+  readData:   valor lido de um registrador.
+      done:   informa se uma operacao de atualizaçao foi realizada com sucesso.
+//////////////////////////////////////////////////////////////////////////
+**/
+module printModule(
+	input wire clk;
+
+
+
+);
+
+
+
+
+endmodule

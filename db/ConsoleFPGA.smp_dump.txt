@@ -1,0 +1,38 @@
+
+State Machine - |ArquiteturaCollenda|video_processor:inst5|full_print_module:full_print_module_inst|printModule:printModule_inst|state
+Name state.AGUARDO state.SPRITE state.PROCESSA state.RECEBE state.AGUARDO_2 
+state.RECEBE 0 0 0 0 0 
+state.PROCESSA 0 0 1 1 0 
+state.SPRITE 0 1 0 1 0 
+state.AGUARDO 1 0 0 1 0 
+state.AGUARDO_2 0 0 0 1 1 
+
+State Machine - |ArquiteturaCollenda|video_processor:inst5|full_register_file:full_register_file_inst|collision:collision_inst|collision_controler:collision_controler_inst|state
+Name state.REFRESH_FLAG state.BEFORE_REFRESH state.CHECK_COLLISION state.SECOND_READ state.BEFORE_SECOND state.FIRST_READ state.BEFORE_FIRST state.WAITING state.FINISHED 
+state.WAITING 0 0 0 0 0 0 0 0 0 
+state.BEFORE_FIRST 0 0 0 0 0 0 1 1 0 
+state.FIRST_READ 0 0 0 0 0 1 0 1 0 
+state.BEFORE_SECOND 0 0 0 0 1 0 0 1 0 
+state.SECOND_READ 0 0 0 1 0 0 0 1 0 
+state.CHECK_COLLISION 0 0 1 0 0 0 0 1 0 
+state.BEFORE_REFRESH 0 1 0 0 0 0 0 1 0 
+state.REFRESH_FLAG 1 0 0 0 0 0 0 1 0 
+state.FINISHED 0 0 0 0 0 0 0 1 1 
+
+State Machine - |ArquiteturaCollenda|video_processor:inst5|controlUnit:controlUnit_inst|state
+Name state.ESCRITA_NA_MEMORIA state.HABILITAR_IMPRESSAO state.ESCREVER_NO_BANCO state.WAIT state.READ_INSTRUCTION state.PRONTO 
+state.PRONTO 0 0 0 0 0 0 
+state.READ_INSTRUCTION 0 0 0 0 1 1 
+state.WAIT 0 0 0 1 0 1 
+state.ESCREVER_NO_BANCO 0 0 1 0 0 1 
+state.HABILITAR_IMPRESSAO 0 1 0 0 0 1 
+state.ESCRITA_NA_MEMORIA 1 0 0 0 0 1 
+
+State Machine - |ArquiteturaCollenda|Arquitetura:inst9|Arquitetura_nios2_gen2_0:nios2_gen2_0|Arquitetura_nios2_gen2_0_cpu:cpu|Arquitetura_nios2_gen2_0_cpu_nios2_oci:the_Arquitetura_nios2_gen2_0_cpu_nios2_oci|Arquitetura_nios2_gen2_0_cpu_debug_slave_wrapper:the_Arquitetura_nios2_gen2_0_cpu_debug_slave_wrapper|Arquitetura_nios2_gen2_0_cpu_debug_slave_tck:the_Arquitetura_nios2_gen2_0_cpu_debug_slave_tck|DRsize
+Name DRsize.101 DRsize.100 DRsize.011 DRsize.010 DRsize.001 DRsize.000 
+DRsize.000 0 0 0 0 0 0 
+DRsize.001 0 0 0 0 1 1 
+DRsize.010 0 0 0 1 0 1 
+DRsize.011 0 0 1 0 0 1 
+DRsize.100 0 1 0 0 0 1 
+DRsize.101 1 0 0 0 0 1 
