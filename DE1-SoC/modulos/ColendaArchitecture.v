@@ -11,7 +11,8 @@ module ColendaArchitecture(
 	output wire	out_vsync,
 	output wire	[2:0] B,
 	output wire	[2:0] G,
-	output wire	[2:0] R
+	output wire	[2:0] R,
+	output wire outVgaClk
 );
 
 wire	clk_100;
@@ -85,5 +86,6 @@ written_pulse	b2v_inst7(
 assign	videoProcessor_reset =  ~reset;
 assign	wrfull_export = wrfull_B | wrfull_A;
 assign	rdempty = rdempty_B | rdempty_A;
+assign  outVgaClk = clk_25;
 
 endmodule

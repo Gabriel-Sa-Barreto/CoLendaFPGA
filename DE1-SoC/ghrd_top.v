@@ -38,29 +38,12 @@ module ghrd_top(
       input              CLOCK_50,
 		
 		///////// VGA OUTPUTS /////////
-		output		[7:0]	 R,
-		output		[7:0]	 G,
-		output		[7:0]	 B,
-		output				 vga_vsync,
-		output				 vga_hsync,
-		
-		///////// f /////////
-      output      [6:0]	 HEX0,
-
-      ///////// HEX1 /////////
-      output      [6:0]  HEX1,
-
-      ///////// HEX2 /////////
-      output      [6:0]  HEX2,
-
-      ///////// HEX3 /////////
-      output      [6:0]  HEX3,
-
-      ///////// HEX4 /////////
-      output      [6:0]  HEX4,
-
-      ///////// HEX5 /////////
-      output      [6:0]  HEX5,
+		output	reg [7:0]	 out_R,
+		output	reg [7:0]	 out_G,
+		output	reg [7:0]	 out_B,
+		output				 out_vga_vsync,
+		output				 out_vga_hsync,
+		output				 out_vga_clk,
 
 `ifdef ENABLE_HPS
       ///////// HPS /////////
@@ -120,8 +103,6 @@ module ghrd_top(
 );
 
 // internal wires and registers declaration
-wire [3:0]  fpga_debounced_buttons;
-wire [9:0]  fpga_led_internal;
 wire        hps_fpga_reset_n;
 wire [2:0]  hps_reset_req;
 wire        hps_cold_reset;
@@ -130,7 +111,7 @@ wire        hps_debug_reset;
 wire [27:0] stm_hw_events;
 
 // connection of internal logics
-assign stm_hw_events    = {{3{1'b0}},SW, fpga_led_internal, fpga_debounced_buttons};
+assign stm_hw_events    = 28'd0;
 
 
 // CoLenda Buses =================
@@ -261,9 +242,54 @@ ColendaArchitecture ColendaArchitecture_inst
 	.out_vsync(out_vsync) ,							// output  out_vsync_sig
 	.B(B) ,												// output [2:0] B_sig
 	.G(G) ,												// output [2:0] G_sig
-	.R(R) 												// output [2:0] R_sig
+	.R(R), 												// output [2:0] R_sig
+	.outVgaClk(out_vga_clk)
 );
-  
+
+assign out_vga_vsync = out_vsync;
+assign out_vga_hsync = out_hsync;
+
+always @(R) begin
+    case(R)
+        3'b000: out_R = 8'b00000000;
+        3'b001: out_R = 8'b00010101;
+        3'b010: out_R = 8'b00111111;
+        3'b011: out_R = 8'b01101001;
+        3'b100: out_R = 8'b10010011;
+        3'b101: out_R = 8'b10111110;
+        3'b110: out_R = 8'b11100111;
+        3'b111: out_R = 8'b11111111;
+    endcase
+end
+
+always @(G) begin
+    case(G)
+        3'b000: out_G = 8'b00000000;
+        3'b001: out_G = 8'b00010101;
+        3'b010: out_G = 8'b00111111;
+        3'b011: out_G = 8'b01101001;
+        3'b100: out_G = 8'b10010011;
+        3'b101: out_G = 8'b10111110;
+        3'b110: out_G = 8'b11100111;
+        3'b111: out_G = 8'b11111111;
+    endcase
+end
+
+always @(B) begin
+    case(B)
+        3'b000: out_B = 8'b00000000;
+        3'b001: out_B = 8'b00010101;
+        3'b010: out_B = 8'b00111111;
+        3'b011: out_B = 8'b01101001;
+        3'b100: out_B = 8'b10010011;
+        3'b101: out_B = 8'b10111110;
+        3'b110: out_B = 8'b11100111;
+        3'b111: out_B = 8'b11111111;
+    endcase
+end
+
+
+
 // Source/Probe megawizard instance
 hps_reset hps_reset_inst (
     .source_clk (CLOCK_50),

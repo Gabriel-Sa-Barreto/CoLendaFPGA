@@ -1,44 +1,40 @@
 
-State Machine - |ghrd_top|altera_edge_detector:pulse_debug_reset|state
-Name state.IDLE state.CAPT state.ARM 
-state.IDLE 0 0 0 
-state.ARM 1 0 1 
-state.CAPT 1 1 0 
-
-State Machine - |ghrd_top|altera_edge_detector:pulse_warm_reset|state
-Name state.IDLE state.CAPT state.ARM 
-state.IDLE 0 0 0 
-state.ARM 1 0 1 
-state.CAPT 1 1 0 
-
-State Machine - |ghrd_top|altera_edge_detector:pulse_cold_reset|state
-Name state.IDLE state.CAPT state.ARM 
-state.IDLE 0 0 0 
-state.ARM 1 0 1 
-state.CAPT 1 1 0 
-
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:pushbuttons_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:data_b_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:blockseg3_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:data_a_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:blockseg2_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:reset_pulsecounter_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:blockseg1_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:screen_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:wrfull_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:wrreg_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
@@ -52,14 +48,100 @@ state.ST_COMP_TRANS 1 0 0 1
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:jtag_uart_avalon_jtag_slave_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:fpga_only_master|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
+Name state.READ_SEND_WAIT state.READ_SEND_ISSUE state.READ_DATA_WAIT state.READ_CMD_WAIT state.READ_ASSERT state.RETURN_PACKET state.WRITE_WAIT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.0000 
+state.0000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.GET_EXTRA 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.GET_SIZE1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.GET_SIZE2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.GET_ADDR1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.GET_ADDR2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.GET_ADDR3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.GET_ADDR4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.GET_WRITE_DATA 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WRITE_WAIT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.RETURN_PACKET 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.READ_ASSERT 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_CMD_WAIT 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_DATA_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_SEND_ISSUE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |ghrd_top|altera_edge_detector:pulse_cold_reset|state
+Name state.IDLE state.CAPT state.ARM 
+state.IDLE 0 0 0 
+state.ARM 1 0 1 
+state.CAPT 1 1 0 
+
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|geometric_Forms_Processor:geometric_Forms_Processor_inst|controls_pipeline:controls_pipeline_inst|state
+Name state.STEP_PROCESSING state.STEP_RESET state.REFRESH_INST_MEMORY state.PROCESSING state.READ_MEMORY state.UPLOAD_DATA state.WAIT state.RESET 
+state.RESET 0 0 0 0 0 0 0 0 
+state.WAIT 0 0 0 0 0 0 1 1 
+state.UPLOAD_DATA 0 0 0 0 0 1 0 1 
+state.READ_MEMORY 0 0 0 0 1 0 0 1 
+state.PROCESSING 0 0 0 1 0 0 0 1 
+state.REFRESH_INST_MEMORY 0 0 1 0 0 0 0 1 
+state.STEP_RESET 0 1 0 0 0 0 0 1 
+state.STEP_PROCESSING 1 0 0 0 0 0 0 1 
+
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|DrawingModule:DrawingModule_inst|BlockModule:BlockModule_inst|background_block:background_block_inst|state
+Name state.WAIT_NEW_LINE state.WAIT_NEW_SCREEN state.WAIT state.REFRESH_ADDR state.COUNT_LINES state.SYNC_TIME state.RESET 
+state.RESET 0 0 0 0 0 0 0 
+state.SYNC_TIME 0 0 0 0 0 1 1 
+state.COUNT_LINES 0 0 0 0 1 0 1 
+state.REFRESH_ADDR 0 0 0 1 0 0 1 
+state.WAIT 0 0 1 0 0 0 1 
+state.WAIT_NEW_SCREEN 0 1 0 0 0 0 1 
+state.WAIT_NEW_LINE 1 0 0 0 0 0 1 
+
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|DrawingModule:DrawingModule_inst|stateMachine_1:stateMachine_1_inst|state
+Name state.WAIT state.D1 state.C1 state.B1 state.A1 state.RESET 
+state.RESET 0 0 0 0 0 0 
+state.A1 0 0 0 0 1 1 
+state.B1 0 0 0 1 0 1 
+state.C1 0 0 1 0 0 1 
+state.D1 0 1 0 0 0 1 
+state.WAIT 1 0 0 0 0 1 
+
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|ControlUnit_aux:ControlUnit_aux_inst|state
+Name state.REFRESH_OUT state.READING state.ENABLE_READING state.WAIT state.END_INST 
+state.WAIT 0 0 0 0 0 
+state.ENABLE_READING 0 0 1 1 0 
+state.READING 0 1 0 1 0 
+state.REFRESH_OUT 1 0 0 1 0 
+state.END_INST 0 0 0 1 1 
+
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|controlUnit:controlUnit_inst|state
+Name state.ESCRITA_NO_CO_PROCESSOR state.ESCRITA_NA_MEMORIA_BK state.ESCRITA_NA_MEMORIA_SP state.HABILITAR_IMPRESSAO state.ESCREVER_NO_BANCO state.PRONTO state.INIT state.RESET 
+state.RESET 0 0 0 0 0 0 0 0 
+state.INIT 0 0 0 0 0 0 1 1 
+state.PRONTO 0 0 0 0 0 1 0 1 
+state.ESCREVER_NO_BANCO 0 0 0 0 1 0 0 1 
+state.HABILITAR_IMPRESSAO 0 0 0 1 0 0 0 1 
+state.ESCRITA_NA_MEMORIA_SP 0 0 1 0 0 0 0 1 
+state.ESCRITA_NA_MEMORIA_BK 0 1 0 0 0 0 0 1 
+state.ESCRITA_NO_CO_PROCESSOR 1 0 0 0 0 0 0 1 
+
+State Machine - |ghrd_top|altera_edge_detector:pulse_debug_reset|state
+Name state.IDLE state.CAPT state.ARM 
+state.IDLE 0 0 0 
+state.ARM 1 0 1 
+state.CAPT 1 1 0 
+
+State Machine - |ghrd_top|altera_edge_detector:pulse_warm_reset|state
+Name state.IDLE state.CAPT state.ARM 
+state.IDLE 0 0 0 
+state.ARM 1 0 1 
+state.CAPT 1 1 0 
+
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory2_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory2_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |ghrd_top|soc_system:u0|soc_system_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:jtag_uart_avalon_jtag_slave_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
@@ -85,37 +167,13 @@ state.READ_DATA_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1
 state.READ_SEND_ISSUE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
-State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
-Name read_state.ST_HEADER read_state.ST_READ_DATA read_state.ST_PADDED 
-read_state.ST_HEADER 0 0 0 
-read_state.ST_PADDED 1 0 1 
-read_state.ST_READ_DATA 1 1 0 
-
-State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
-Name write_state.ST_WRITE_DATA write_state.ST_HEADER_2 write_state.ST_HEADER_1 write_state.ST_BYPASS 
-write_state.ST_BYPASS 0 0 0 0 
-write_state.ST_HEADER_1 0 0 1 1 
-write_state.ST_HEADER_2 0 1 0 1 
-write_state.ST_WRITE_DATA 1 0 0 1 
-
-State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:fpga_only_master|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
-Name state.READ_SEND_WAIT state.READ_SEND_ISSUE state.READ_DATA_WAIT state.READ_CMD_WAIT state.READ_ASSERT state.RETURN_PACKET state.WRITE_WAIT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.0000 
-state.0000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-state.GET_EXTRA 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-state.GET_SIZE1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-state.GET_SIZE2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-state.GET_ADDR1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-state.GET_ADDR2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-state.GET_ADDR3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-state.GET_ADDR4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-state.GET_WRITE_DATA 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-state.WRITE_WAIT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-state.RETURN_PACKET 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-state.READ_ASSERT 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-state.READ_CMD_WAIT 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-state.READ_DATA_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.READ_SEND_ISSUE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+State Machine - |ghrd_top|ColendaArchitecture:ColendaArchitecture_inst|video_processor:b2v_inst5|DrawingModule:DrawingModule_inst|stateMachine_2:stateMachine_2_inst|state
+Name state.D2 state.C2 state.B2 state.RESET state.E2 
+state.RESET 0 0 0 0 0 
+state.B2 0 0 1 1 0 
+state.C2 0 1 0 1 0 
+state.D2 1 0 0 1 0 
+state.E2 0 0 0 1 1 
 
 State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:fpga_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
 Name read_state.ST_HEADER read_state.ST_READ_DATA read_state.ST_PADDED 
@@ -124,6 +182,19 @@ read_state.ST_PADDED 1 0 1
 read_state.ST_READ_DATA 1 1 0 
 
 State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:fpga_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
+Name write_state.ST_WRITE_DATA write_state.ST_HEADER_2 write_state.ST_HEADER_1 write_state.ST_BYPASS 
+write_state.ST_BYPASS 0 0 0 0 
+write_state.ST_HEADER_1 0 0 1 1 
+write_state.ST_HEADER_2 0 1 0 1 
+write_state.ST_WRITE_DATA 1 0 0 1 
+
+State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_state
+Name read_state.ST_HEADER read_state.ST_READ_DATA read_state.ST_PADDED 
+read_state.ST_HEADER 0 0 0 
+read_state.ST_PADDED 1 0 1 
+read_state.ST_READ_DATA 1 1 0 
+
+State Machine - |ghrd_top|soc_system:u0|soc_system_fpga_only_master:hps_only_master|altera_avalon_st_jtag_interface:jtag_phy_embedded_in_jtag_master|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_state
 Name write_state.ST_WRITE_DATA write_state.ST_HEADER_2 write_state.ST_HEADER_1 write_state.ST_BYPASS 
 write_state.ST_BYPASS 0 0 0 0 
 write_state.ST_HEADER_1 0 0 1 1 

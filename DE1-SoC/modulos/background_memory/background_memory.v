@@ -96,7 +96,7 @@ module background_memory (
 		altsyncram_component.outdata_aclr_a = "NONE",
 		altsyncram_component.outdata_reg_a = "CLOCK0",
 		altsyncram_component.power_up_uninitialized = "FALSE",
-		altsyncram_component.read_during_write_mode_port_a = "OLD_DATA",
+		altsyncram_component.read_during_write_mode_port_a = "dont_care",
 		altsyncram_component.widthad_a = 13,
 		altsyncram_component.width_a = 9,
 		altsyncram_component.width_byteena_a = 1;
