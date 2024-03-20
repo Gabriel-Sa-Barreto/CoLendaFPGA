@@ -24,19 +24,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "out_vga_vsync",
-					"strict" : false
-				},
-				{
-					"name" : "out_vga_hsync",
-					"strict" : false
-				},
-				{
 					"name" : "out_R[5]",
 					"strict" : false
 				},
 				{
 					"name" : "out_R[6]",
+					"strict" : false
+				},
+				{
+					"name" : "out_vga_vsync",
+					"strict" : false
+				},
+				{
+					"name" : "out_vga_hsync",
 					"strict" : false
 				},
 				{

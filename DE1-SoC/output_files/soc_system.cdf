@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("/home/gabriel/Documents/Oficina-Collenda/Testes/hps-to-fpga/output_files/") File("soc_system.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("C:/Users/gabri/Documents/Oficina-Collenda/CoLendaFPGA/CoLendaFPGA/DE1-SoC/output_files/") File("soc_system.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

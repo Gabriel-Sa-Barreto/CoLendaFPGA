@@ -117,7 +117,7 @@ assign stm_hw_events    = 28'd0;
 // CoLenda Buses =================
 wire [31:0] dataA;
 wire [31:0] dataB;
-wire out_screen;
+wire pulseCounter_state;
 wire wrreg;
 wire reset_pulsecounter;
 wire wrfull;
@@ -222,7 +222,7 @@ soc_system u0 (
     .hps_0_f2h_cold_reset_req_reset_n      (~hps_cold_reset),           //       hps_0_f2h_cold_reset_req.reset_n
     .wrreg_export                          (wrreg),                     //                     wrreg.export
     .wrfull_export                         (wrfull),                    //                    wrfull.export
-    .screen_export                         (out_screen),                //                    screen.export
+    .screen_export                         (pulseCounter_state),        //                    screen.export
     .reset_pulsecounter_export             (reset_pulsecounter),        //        reset_pulsecounter.export
     .data_a_export                         (dataA),                     //                    data_a.export
     .data_b_export                         (dataB)                      //                    data_b.export
@@ -234,12 +234,12 @@ ColendaArchitecture ColendaArchitecture_inst
 	.reset(hps_fpga_reset_n) ,						// input  reset_sig
 	.dataA(dataA) ,									// input [31:0] dataA_sig
 	.dataB(dataB) ,									// input [31:0] dataB_sig
-	.out_screen(out_screen) ,						// input  out_screen_sig
 	.wrreg_export(wrreg) ,							// input  wrreg_export_sig
-	.reset_pulsecounter(reset_pulsecounter) ,	// input  reset_pulsecounter_sig
+	.reset_pulsecounter(reset_pulsecounter) ,	    // input  reset_pulsecounter_sig
 	.wrfull_export(wrfull) ,						// output  wrfull_export_sig
 	.out_hsync(out_hsync) ,							// output  out_hsync_sig
 	.out_vsync(out_vsync) ,							// output  out_vsync_sig
+    .out_screen(pulseCounter_state) ,               // output  out_screen_sig
 	.B(B) ,												// output [2:0] B_sig
 	.G(G) ,												// output [2:0] G_sig
 	.R(R), 												// output [2:0] R_sig

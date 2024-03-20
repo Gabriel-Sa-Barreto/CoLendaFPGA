@@ -3,12 +3,12 @@ module ColendaArchitecture(
 	input wire	reset,
 	input wire  [31:0] dataA,
 	input wire  [31:0] dataB,
-	input wire	out_screen,
 	input wire	wrreg_export,
 	input wire	reset_pulsecounter,
 	output wire	wrfull_export,
 	output wire	out_hsync,
 	output wire	out_vsync,
+	output wire	out_screen,
 	output wire	[2:0] B,
 	output wire	[2:0] G,
 	output wire	[2:0] R,
@@ -55,13 +55,12 @@ clock_pll	b2v_inst2(
 	.c1(clk_25)
 	);
 
-pulseCounter	b2v_inst4(
+pulseCounter #(.MAX_VALUE(419200), .n_bits(19))
+b2v_inst4(
 	.clk(clk_25),
 	.reset(reset_pulsecounter),
-	.screen(out_screen));
-	defparam	b2v_inst4.MAX_VALUE = 419200;
-	defparam	b2v_inst4.n_bits = 19;
-
+	.screen(out_screen)
+);
 
 video_processor	b2v_inst5(
 	.clk_100(clk_100),
